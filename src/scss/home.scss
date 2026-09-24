@@ -1,0 +1,205 @@
+@use "base/mixins";
+@use "variables";
+
+/**
+ * Задаёт свойство, плавно меняющееся от десктопного макета (1920) к мобильному (320)
+ */
+@mixin av($property, $startSize, $minSize) {
+  @include mixins.adaptiveValue($property, $startSize, $minSize, variables.$maxWidth, variables.$mobileDesign);
+}
+
+// Брейкпоинт перехода на мобильную компоновку
+$heroMobile: mixins.toEm(variables.$mobile);
+
+//====================================================================================================
+// Hero: слайдер акций под шапкой
+//====================================================================================================
+.hero {
+  @include av("padding-top", 19, 14);
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    position: relative;
+  }
+
+  &__banner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: var(--text-light-color);
+    background-color: var(--brand-color);
+    @include av("height", 320, 180);
+    @include av("border-radius", 10, 8);
+
+    // Оранжевый круг под текстом
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--sale-gradient);
+      box-shadow: 4.64px 4.64px 4.64px rgba(0, 0, 0, 0.15);
+      translate: 0 -50%;
+      @include av("width", 632, 355);
+      @include av("left", -278, -157);
+    }
+
+    // Светлое свечение за картинкой
+    &::after {
+      content: "";
+      position: absolute;
+      top: 17%;
+      right: 1.6%;
+      width: 51%;
+      height: 88.4%;
+      border-radius: 50%;
+      background-color: #bbff76;
+      filter: blur(100px);
+    }
+
+    @media (max-width: $heroMobile) {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    @include av("padding-top", 54, 16);
+    @include av("padding-left", 124, 16);
+    @include av("padding-right", 124, 16);
+  }
+
+  &__date {
+    @include av("font-size", 20, 10);
+    @include av("line-height", 27, 14);
+    @include av("margin-bottom", 3, 8);
+  }
+
+  &__title {
+    font-family: var(--font-family-promo);
+    font-weight: 700;
+    text-transform: uppercase;
+    @include av("font-size", 60, 21);
+    @include av("line-height", 75, 30);
+
+    @media (max-width: $heroMobile) {
+      font-family: var(--font-family);
+    }
+  }
+
+  &__discount {
+    font-family: var(--font-family-promo);
+    line-height: 1;
+    @include av("font-size", 40.18, 22);
+    @include av("margin-top", 5, 8);
+
+    @media (max-width: $heroMobile) {
+      font-family: var(--font-family);
+      font-weight: 700;
+      line-height: 1.41;
+    }
+  }
+
+  &__discount-label {
+    display: block;
+    text-transform: uppercase;
+
+    @media (max-width: $heroMobile) {
+      text-transform: none;
+    }
+  }
+
+  &__discount-value {
+    display: flex;
+    align-items: center;
+    margin-top: -0.26em;
+    padding-left: 0.36em;
+
+    @media (max-width: $heroMobile) {
+      display: block;
+      margin-top: 0;
+      padding-left: 0;
+    }
+  }
+
+  &__discount-prefix,
+  &__discount-suffix {
+    position: relative;
+    top: -0.15em;
+
+    @media (max-width: $heroMobile) {
+      position: static;
+    }
+  }
+
+  &__discount-prefix {
+    margin-right: 0.27em;
+
+    @media (max-width: $heroMobile) {
+      margin-right: 0;
+    }
+  }
+
+  &__discount-number {
+    font-size: 2em;
+    font-weight: 700;
+
+    @media (max-width: $heroMobile) {
+      font-size: 1em;
+    }
+  }
+
+  &__discount-suffix {
+    margin-left: 0.4em;
+    font-weight: 700;
+
+    @media (max-width: $heroMobile) {
+      margin-left: 0;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    z-index: 1;
+    max-width: none;
+    height: auto;
+    @include av("width", 636, 122);
+    @include av("right", 69, 10);
+    @include av("bottom", -35, 14);
+  }
+
+  // Пагинация Splide поверх баннера
+  .splide__pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    gap: 8px;
+    @include av("bottom", 16, 8);
+  }
+
+  .splide__pagination__page {
+    display: block;
+    width: 6px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: width 0.3s, background-color 0.3s;
+
+    &.is-active {
+      width: 18px;
+      background-color: var(--text-light-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-light-color);
+      outline-offset: 2px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "public\\fonts\\OpenSans-Bold.ttf": {
+    "hash": "6bbd5cf43b71e9b0189b2de47ac42950",
+    "metadata": {
+      "family": "Open Sans",
+      "weight": 700,
+      "style": "normal",
+      "isVariable": false
+    }
+  },
+  "public\\fonts\\OpenSans-Medium.ttf": {
+    "hash": "899f008e0670a768d2e42ad81c0380fe",
+    "metadata": {
+      "family": "Open Sans",
+      "weight": 500,
+      "style": "normal",
+      "isVariable": false
+    }
+  },
+  "public\\fonts\\OpenSans-Regular.ttf": {
+    "hash": "94d168f74b7dd50963fd44fe697d6f3e",
+    "metadata": {
+      "family": "Open Sans",
+      "weight": 400,
+      "style": "normal",
+      "isVariable": false
+    }
+  },
+  "public\\fonts\\SourceSansPro-Bold.ttf": {
+    "hash": "0d9b62a03206f739cd34b2936a5929f1",
+    "metadata": {
+      "family": "Source Sans Pro",
+      "weight": 700,
+      "style": "normal",
+      "isVariable": false
+    }
+  },
+  "public\\fonts\\SourceSansPro-Regular.ttf": {
+    "hash": "5182da425f811908bed9f5b8c72fa44f",
+    "metadata": {
+      "family": "Source Sans Pro",
+      "weight": 400,
+      "style": "normal",
+      "isVariable": false
+    }
+  },
+  "public\\fonts\\OpenSans-SemiBold.ttf": {
+    "hash": "ebebb4b54355687d59886f3e6f1694b3",
+    "metadata": {
+      "family": "Open Sans",
+      "weight": 600,
+      "style": "normal",
+      "isVariable": false
+    }
+  }
+}

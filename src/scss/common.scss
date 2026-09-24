@@ -1,0 +1,111 @@
+// Заголовки, общие БЄМ блоки и прочее...
+@use "base/mixins";
+@use "sass:math";
+
+@use "variables";
+
+// Заголовки, общие БЄМ блоки и прочее...
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+._md1dn {
+  @media (max-width:mixins.toEm(variables.$pc)){
+    display: none !important;
+  }
+}
+
+._mmd1dn {
+  @media (min-width:mixins.toEm(variables.$pc)){
+    display: none !important;
+  }
+}
+
+._md2dn {
+  @media (max-width:mixins.toEm(variables.$tablet)){
+    display: none !important;
+  }
+}
+
+._mmd2dn {
+  @media (min-width:mixins.toEm(variables.$tablet)){
+    display: none !important;
+  }
+}
+
+._md3dn {
+  @media (max-width:mixins.toEm(variables.$mobile)){
+    display: none !important;
+  }
+}
+
+._mmd3dn {
+  @media (min-width:mixins.toEm(variables.$mobile)){
+    display: none !important;
+  }
+}
+
+._md4dn {
+  @media (max-width:mixins.toEm(variables.$mobileSmall)){
+    display: none !important;
+  }
+}
+
+._mmd4dn {
+  @media (min-width:mixins.toEm(variables.$mobileSmall)){
+    display: none !important;
+  }
+}
+
+._pen {
+  pointer-events: none;
+}
+
+._skeleton {
+  overflow: hidden;
+  position: relative;
+  pointer-events: none;
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    z-index: 2;
+    opacity: var(--opacity, 1);
+  }
+  
+  &::after{
+    content:'';
+    position: absolute;
+    top: -5%;
+    left: calc(100% + mixins.toRem(60));
+    width: mixins.toRem(40);
+    height: 110%;
+    rotate: 15deg;
+    background-color: #fff;
+    box-shadow: 0px 0px mixins.toRem(10) mixins.toRem(10) rgba(255, 255, 255, 1);
+    z-index: 3;
+    opacity: 0.4;
+    animation: skeletonAfterAnim 1s ease infinite;
+  }
+}
+
+@keyframes skeletonAfterAnim {
+  from {
+      left: -3.75rem
+  }
+}
