@@ -10,6 +10,12 @@
             <div class="hero__slider splide" aria-label="Акции и распродажи">
               <div class="splide__track">
                 <ul class="splide__list">
+                  <!-- Баннер только из картинки: текст, если есть, — в самой картинке, поэтому описываем его в alt -->
+                  <li class="splide__slide">
+                    <a href="#" class="hero__banner">
+                      <img class="hero__cover" src="/img/home/hero-photo.png" alt="Межкомнатные двери в интерьере" width="1916" height="1200">
+                    </a>
+                  </li>
                   <li class="splide__slide">
                     <a href="#" class="hero__banner">
                       <div class="hero__content">
@@ -54,9 +60,509 @@
             </div>
           </div>
         </section>
+        <section class="hits">
+          <div class="hits__container">
+            <div class="hits__head">
+              <h2 class="section-title">Хиты продаж</h2>
+            </div>
+            <div class="hits__body">
+              <div class="hits__top">
+                <a href="#" class="hits__link link-more" data-da=".hits__head,767.98,last">Каталог</a>
+              </div>
+              <div class="hits__slider splide" aria-label="Хиты продаж">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="popular">
+          <div class="popular__container">
+            <div class="popular__head section-head">
+              <h2 class="section-title">Популярные</h2>
+              <a href="#" class="popular__link section-head__link link-more">Каталог</a>
+            </div>
+            <ul class="popular__grid">
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-01.png", "name": "Массив дерева", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-02.png", "name": "Стеклянные", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-03.png", "name": "Пластиковые", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-04.png", "name": "Под покраску", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-05.png", "name": "Влагостойкие", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-06.png", "name": "Эмаль", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-07.png", "name": "Массив дерева", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-08.png", "name": "Стеклянные", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-09.png", "name": "Пластиковые", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-10.png", "name": "Под покраску", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-11.png", "name": "Влагостойкие", "href": "#"}'></include></li>
+              <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-12.png", "name": "Эмаль", "href": "#"}'></include></li>
+            </ul>
+          </div>
+        </section>
+        <section class="novelties">
+          <div class="novelties__container">
+            <div class="novelties__head section-head">
+              <h2 class="section-title">Новинки</h2>
+              <a href="#" class="novelties__link section-head__link link-more">Каталог</a>
+            </div>
+            <div class="novelties__slider splide" aria-label="Новинки">
+              <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}, {"text": "Хит", "style": "--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="promos">
+          <div class="promos__container">
+            <div class="promos__head section-head">
+              <h2 class="section-title">Скидки и акции</h2>
+              <a href="#" class="promos__link section-head__link link-more">Смотреть все</a>
+            </div>
+            <div class="promos__slider splide" aria-label="Скидки и акции">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge">
+                        <span class="promo-card__badge-label">Скидки</span>
+                        <span class="promo-card__badge-prefix">до</span>
+                        <span class="promo-card__badge-number">50</span>
+                        <span class="promo-card__badge-suffix">%</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Успейте купить</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge">
+                        <span class="promo-card__badge-label">Скидки</span>
+                        <span class="promo-card__badge-prefix">до</span>
+                        <span class="promo-card__badge-number">30</span>
+                        <span class="promo-card__badge-suffix">%</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Акция недели</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge promo-card__badge--bonus">
+                        <span class="promo-card__badge-line">Накопи</span>
+                        <span class="promo-card__badge-accent">бонусы</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Аксессуары</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge">
+                        <span class="promo-card__badge-label">Скидки</span>
+                        <span class="promo-card__badge-prefix">до</span>
+                        <span class="promo-card__badge-number">50</span>
+                        <span class="promo-card__badge-suffix">%</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Успейте купить</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge">
+                        <span class="promo-card__badge-label">Скидки</span>
+                        <span class="promo-card__badge-prefix">до</span>
+                        <span class="promo-card__badge-number">30</span>
+                        <span class="promo-card__badge-suffix">%</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Акция недели</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="splide__slide">
+                    <a href="#" class="promo-card">
+                      <span class="promo-card__badge promo-card__badge--bonus">
+                        <span class="promo-card__badge-line">Накопи</span>
+                        <span class="promo-card__badge-accent">бонусы</span>
+                      </span>
+                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
+                      <span class="promo-card__text">
+                        <span class="promo-card__title">Аксессуары</span>
+                        <span class="promo-card__date">до 10.02</span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="services">
+          <div class="services__container">
+            <div class="services__head section-head">
+              <h2 class="section-title">Услуги</h2>
+              <a href="#" class="services__link section-head__link link-more">Смотреть все</a>
+            </div>
+            <ul class="services__grid">
+              <li>
+                <a href="#" class="service-card">
+                  <img class="service-card__icon" src="/img/home/service-measure.svg" alt="" width="91" height="90" loading="lazy">
+                  <span class="service-card__name">Замер помещения</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="service-card">
+                  <img class="service-card__icon" src="/img/home/service-kitchen.svg" alt="" width="99" height="90" loading="lazy">
+                  <span class="service-card__name">Планирование кухни со&nbsp;специалистом</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="service-card">
+                  <img class="service-card__icon" src="/img/home/service-appliances.svg" alt="" width="85" height="90" loading="lazy">
+                  <span class="service-card__name">Сборка и&nbsp;подключение бытовой техники</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="service-card">
+                  <img class="service-card__icon" src="/img/home/service-video.svg" alt="" width="90" height="90" loading="lazy">
+                  <span class="service-card__name">Видео&shy;консультация с&nbsp;продавцом</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="tv">
+          <div class="tv__container">
+            <div class="tv__head section-head">
+              <h2 class="section-title">Наш TV</h2>
+              <a href="#" class="tv__link section-head__link link-more">Смотреть все</a>
+            </div>
+            <div class="tv__slider splide" aria-label="Наш TV" data-gallery>
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-video='{"source": [{"src": "/video/video1.mp4", "type": "video/mp4"}], "attributes": {"preload": false, "controls": true}}' data-gallery-item data-poster="/img/home/tv-01.png" data-sub-html="Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера" aria-label="Смотреть видео: Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера">
+                        <img class="tv-card__image" src="/img/home/tv-01.png" alt="" width="1024" height="1024" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-02.png" data-sub-html="За кулисами нашего салона: Как мы отбираем мебель для вашего уюта" aria-label="Смотреть видео: За кулисами нашего салона: Как мы отбираем мебель для вашего уюта">
+                        <img class="tv-card__image" src="/img/home/tv-02.png" alt="" width="736" height="736" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">За кулисами нашего салона: Как мы отбираем мебель для вашего уюта</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-03.png" data-sub-html="Секрет нашего бестселлера: Почему этот диван выбирают тысячи?" aria-label="Смотреть видео: Секрет нашего бестселлера: Почему этот диван выбирают тысячи?">
+                        <img class="tv-card__image" src="/img/home/tv-03.png" alt="" width="1440" height="1440" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">Секрет нашего бестселлера: Почему этот диван выбирают тысячи?</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-04.png" data-sub-html="5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель" aria-label="Смотреть видео: 5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель">
+                        <img class="tv-card__image" src="/img/home/tv-04.png" alt="" width="1080" height="1080" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-01.png" data-sub-html="Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера" aria-label="Смотреть видео: Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера">
+                        <img class="tv-card__image" src="/img/home/tv-01.png" alt="" width="1024" height="1024" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">Топ-5 ошибок при выборе мебели для маленькой квартиры. Советы дизайнера</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-02.png" data-sub-html="За кулисами нашего салона: Как мы отбираем мебель для вашего уюта" aria-label="Смотреть видео: За кулисами нашего салона: Как мы отбираем мебель для вашего уюта">
+                        <img class="tv-card__image" src="/img/home/tv-02.png" alt="" width="736" height="736" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">За кулисами нашего салона: Как мы отбираем мебель для вашего уюта</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-03.png" data-sub-html="Секрет нашего бестселлера: Почему этот диван выбирают тысячи?" aria-label="Смотреть видео: Секрет нашего бестселлера: Почему этот диван выбирают тысячи?">
+                        <img class="tv-card__image" src="/img/home/tv-03.png" alt="" width="1440" height="1440" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">Секрет нашего бестселлера: Почему этот диван выбирают тысячи?</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="tv-card">
+                      <button type="button" class="tv-card__media" data-src="https://www.youtube.com/watch?v=aqz-KE-bpKQ" data-gallery-item data-poster="/img/home/tv-04.png" data-sub-html="5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель" aria-label="Смотреть видео: 5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель">
+                        <img class="tv-card__image" src="/img/home/tv-04.png" alt="" width="1080" height="1080" loading="lazy">
+                        <span class="tv-card__play"><svg viewBox="0 0 52 52" aria-hidden="true"><path fill="currentColor" d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9862 35.5032C21.7402 35.6568 21.4575 35.7418 21.1675 35.7493C20.8775 35.7569 20.5908 35.6867 20.3371 35.5461C20.0834 35.4055 19.872 35.1996 19.7248 34.9497C19.5776 34.6998 19.5 34.415 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.5906 16.3128 20.8774 16.2423 21.1675 16.2498C21.4576 16.2574 21.7404 16.3427 21.9862 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z"/></svg></span>
+                        <img class="tv-card__logo" src="/img/home/tv-logo.svg" alt="" width="112" height="19">
+                      </button>
+                      <h3 class="tv-card__title">5 шагов к идеальной гостиной: Тренды и решения от РФ Мебель</h3>
+                      <time class="tv-card__date" datetime="2025-10-12">12.10.2025</time>
+                    </article>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="shops">
+          <div class="shops__container">
+            <div class="shops__head section-head">
+              <h2 class="section-title">Адреса магазинов</h2>
+            </div>
+            <div class="shops__body">
+              <div class="shops__map" id="shops-map" aria-label="Карта магазинов"></div>
+              <ul class="shops__list">
+              <li>
+                <article class="shop-card">
+                  <h3 class="shop-card__name"><svg viewBox="0 0 17 21" aria-hidden="true"><path fill="currentColor" d="M7.57045 0.0494181C3.0686 0.529661 -0.338211 4.79181 0.0268044 9.29408C0.513491 15.117 5.98872 19.4992 7.87463 20.8199C8.23964 21.06 8.72633 21.06 9.09134 20.8199C11.0381 19.3192 17 14.2766 17 8.39363C17 3.47114 12.6807 -0.490855 7.57045 0.0494181ZM8.48298 11.6953C6.59707 11.6953 5.13701 10.1945 5.13701 8.39363C5.13701 6.53269 6.65791 5.09196 8.48298 5.09196C10.3081 5.09196 11.829 6.59272 11.829 8.39363C11.829 10.1945 10.3081 11.6953 8.48298 11.6953Z"/></svg><span>Фирменный магазин Белорусские двери</span></h3>
+                  <p class="shop-card__address">г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ &quot;Квадратный Метр&quot;, 2 этаж, пав. 3</p>
+                  <p class="shop-card__hours">Режим работы: c 10:00 до 20:00</p>
+                  <a href="#" class="shop-card__more">Подробнее</a>
+                </article>
+              </li>
+              <li>
+                <article class="shop-card">
+                  <h3 class="shop-card__name"><svg viewBox="0 0 17 21" aria-hidden="true"><path fill="currentColor" d="M7.57045 0.0494181C3.0686 0.529661 -0.338211 4.79181 0.0268044 9.29408C0.513491 15.117 5.98872 19.4992 7.87463 20.8199C8.23964 21.06 8.72633 21.06 9.09134 20.8199C11.0381 19.3192 17 14.2766 17 8.39363C17 3.47114 12.6807 -0.490855 7.57045 0.0494181ZM8.48298 11.6953C6.59707 11.6953 5.13701 10.1945 5.13701 8.39363C5.13701 6.53269 6.65791 5.09196 8.48298 5.09196C10.3081 5.09196 11.829 6.59272 11.829 8.39363C11.829 10.1945 10.3081 11.6953 8.48298 11.6953Z"/></svg><span>Фирменный магазин Ульяновские Двери</span></h3>
+                  <p class="shop-card__address">г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ &quot;Квадратный Метр&quot;, 2 этаж, пав. 4, 5</p>
+                  <p class="shop-card__hours">Режим работы: c 10:00 до 20:00</p>
+                  <a href="#" class="shop-card__more">Подробнее</a>
+                </article>
+              </li>
+              <li>
+                <article class="shop-card">
+                  <h3 class="shop-card__name"><svg viewBox="0 0 17 21" aria-hidden="true"><path fill="currentColor" d="M7.57045 0.0494181C3.0686 0.529661 -0.338211 4.79181 0.0268044 9.29408C0.513491 15.117 5.98872 19.4992 7.87463 20.8199C8.23964 21.06 8.72633 21.06 9.09134 20.8199C11.0381 19.3192 17 14.2766 17 8.39363C17 3.47114 12.6807 -0.490855 7.57045 0.0494181ZM8.48298 11.6953C6.59707 11.6953 5.13701 10.1945 5.13701 8.39363C5.13701 6.53269 6.65791 5.09196 8.48298 5.09196C10.3081 5.09196 11.829 6.59272 11.829 8.39363C11.829 10.1945 10.3081 11.6953 8.48298 11.6953Z"/></svg><span>Фирменный магазин фабрики Оникс</span></h3>
+                  <p class="shop-card__address">г. Раменское, Донинское шоссе, д. 20, ТВЦ &quot;Радуга&quot;, Гипермаркет товаров для ремонта &quot;Уютный Дом&quot;, пав. Б-3</p>
+                  <p class="shop-card__hours">Режим работы: c 09:00 до 19:00</p>
+                  <a href="#" class="shop-card__more">Подробнее</a>
+                </article>
+              </li>
+              </ul>
+            </div>
+            <script type="application/json" id="shops-data">[{"id":"belorusskie","name":"Фирменный магазин Белорусские двери","address":"г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ \"Квадратный Метр\", 2 этаж, пав. 3","hours":"c 10:00 до 20:00","coords":[37.697432499999984,55.72079806900604],"icon":"/templates/rf-dveri.ru/images/GeoGreenIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"ulyanovskie","name":"Фирменный магазин Ульяновские Двери","address":"г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ \"Квадратный Метр\", 2 этаж, пав. 4, 5","hours":"c 10:00 до 20:00","coords":[37.697432499999984,55.72079806900604],"icon":"/templates/rf-dveri.ru/images/GeoRedIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"oniks","name":"Фирменный магазин фабрики Оникс","address":"г. Раменское, Донинское шоссе, д. 20, ТВЦ \"Радуга\", Гипермаркет товаров для ремонта \"Уютный Дом\", пав. Б-3","hours":"c 09:00 до 19:00","coords":[38.25347149999988,55.58945206914478],"icon":"/templates/rf-dveri.ru/images/GeoRedIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"sklad","name":"Склад дверей","address":"г. Лыткарино, ул. Тураевское шоссе д. 13А","hours":"c 10:00 до 18:00","coords":[37.955689,55.559043],"icon":"/templates/rf-dveri.ru/images/GeoGreenIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"}]</script>
+          </div>
+        </section>
+        <section class="news">
+          <div class="news__container">
+            <div class="news__head section-head">
+              <h2 class="section-title">Новости</h2>
+              <a href="#" class="news__all section-head__link link-more">Смотреть все</a>
+            </div>
+            <ul class="news__list">
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новинки сезона: входные двери с терморазрывом</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Новинки сезона: входные двери с терморазрывом</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-02.png" alt="" width="160" height="217" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="makers">
+          <div class="makers__container">
+            <div class="makers__head section-head">
+              <h2 class="section-title">Производители дверей</h2>
+            </div>
+            <div class="makers__slider splide" aria-label="Производители дверей">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-01.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Владимирские</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-07.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">El'Porta</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-13.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Aquadoor</span>
+                      </a>
+                  </li>
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-02.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Ульяновские</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-08.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Ковровские</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-14.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Uberture</span>
+                      </a>
+                  </li>
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-03.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Белорусские</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-09.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Мариам</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-15.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Eldorf</span>
+                      </a>
+                  </li>
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-04.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Albero</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-10.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Оникс</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-16.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Casaporte</span>
+                      </a>
+                  </li>
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-05.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Profilo Porte</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-11.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Акма</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-17.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Краснодеревщик</span>
+                      </a>
+                  </li>
+                  <li class="splide__slide makers__column">
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-06.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Верда</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-12.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Kapelli</span>
+                      </a>
+                      <a href="#" class="maker-card">
+                        <span class="maker-card__logo"><img src="/img/home/maker-18.png" alt="" loading="lazy"></span>
+                        <span class="maker-card__name">Финские двери</span>
+                      </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 			</main>
       <include src="src/html/_footer.html"></include>
+      <include src="src/html/_mobile-nav.html"></include>
 		</div>
+    <include src="src/html/_contact-popup.html"></include>
     <include src="src/html/_js.html"></include>
 	</body>
 </html>

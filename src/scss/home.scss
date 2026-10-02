@@ -1,15 +1,9 @@
-@use "base/mixins";
+@use "sass:math";
+@use "base/mixins" as *;
 @use "variables";
 
-/**
- * Задаёт свойство, плавно меняющееся от десктопного макета (1920) к мобильному (320)
- */
-@mixin av($property, $startSize, $minSize) {
-  @include mixins.adaptiveValue($property, $startSize, $minSize, variables.$maxWidth, variables.$mobileDesign);
-}
-
 // Брейкпоинт перехода на мобильную компоновку
-$heroMobile: mixins.toEm(variables.$mobile);
+$bpMobile: toEm(variables.$mobile);
 
 //====================================================================================================
 // Hero: слайдер акций под шапкой
@@ -39,7 +33,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
       aspect-ratio: 1;
       border-radius: 50%;
       background: var(--sale-gradient);
-      box-shadow: 4.64px 4.64px 4.64px rgba(0, 0, 0, 0.15);
+      box-shadow: toRem(4.64) toRem(4.64) toRem(4.64) rgba(0, 0, 0, 0.15);
       translate: 0 -50%;
       @include av("width", 632, 355);
       @include av("left", -278, -157);
@@ -55,15 +49,34 @@ $heroMobile: mixins.toEm(variables.$mobile);
       height: 88.4%;
       border-radius: 50%;
       background-color: #bbff76;
-      filter: blur(100px);
+      filter: blur(toRem(100));
     }
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       &::before,
       &::after {
         display: none;
       }
     }
+
+    // Баннер только из картинки (внутри одна .hero__cover): без фона, круга и свечения
+    &:has(> .hero__cover) {
+      background-color: var(--bg-image-color);
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  // Картинка на весь баннер: если она есть, баннер без фона, круга и свечения
+  &__cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__content {
@@ -87,7 +100,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     @include av("font-size", 60, 21);
     @include av("line-height", 75, 30);
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       font-family: var(--font-family);
     }
   }
@@ -98,7 +111,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     @include av("font-size", 40.18, 22);
     @include av("margin-top", 5, 8);
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       font-family: var(--font-family);
       font-weight: 700;
       line-height: 1.41;
@@ -109,7 +122,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     display: block;
     text-transform: uppercase;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       text-transform: none;
     }
   }
@@ -120,7 +133,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     margin-top: -0.26em;
     padding-left: 0.36em;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       display: block;
       margin-top: 0;
       padding-left: 0;
@@ -132,7 +145,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     position: relative;
     top: -0.15em;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       position: static;
     }
   }
@@ -140,7 +153,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
   &__discount-prefix {
     margin-right: 0.27em;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       margin-right: 0;
     }
   }
@@ -149,7 +162,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     font-size: 2em;
     font-weight: 700;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       font-size: 1em;
     }
   }
@@ -158,7 +171,7 @@ $heroMobile: mixins.toEm(variables.$mobile);
     margin-left: 0.4em;
     font-weight: 700;
 
-    @media (max-width: $heroMobile) {
+    @media (max-width: $bpMobile) {
       margin-left: 0;
     }
   }
@@ -179,27 +192,921 @@ $heroMobile: mixins.toEm(variables.$mobile);
     left: 0;
     right: 0;
     z-index: 3;
-    gap: 8px;
+    gap: toRem(8);
     @include av("bottom", 16, 8);
   }
 
   .splide__pagination__page {
     display: block;
-    width: 6px;
-    height: 4px;
-    border-radius: 2px;
+    width: toRem(6);
+    height: toRem(4);
+    border-radius: toRem(2);
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     transition: width 0.3s, background-color 0.3s;
 
     &.is-active {
-      width: 18px;
+      width: toRem(18);
       background-color: var(--text-light-color);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--text-light-color);
-      outline-offset: 2px;
+      outline: toRem(2) solid var(--text-light-color);
+      outline-offset: toRem(2);
     }
+  }
+}
+
+//====================================================================================================
+// Хиты продаж: слайдер карточек на серой подложке (на мобильном без подложки)
+//====================================================================================================
+.hits {
+  @include av("padding-bottom", 40, 24);
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(12);
+    @include av("margin-bottom", 40, 12);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    border-radius: toRem(10);
+    background-color: var(--bg-section-color);
+    gap: toRem(14);
+    padding: toRem(24) toRem(24) toRem(36);
+
+    @media (max-width: $bpMobile) {
+      gap: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: toRem(34);
+
+    @media (max-width: $bpMobile) {
+      display: none;
+    }
+  }
+
+  &__slider {
+    position: relative;
+
+    .splide__track {
+      padding-top: toRem(12);
+      padding-bottom: toRem(12);
+
+      @media (max-width: $bpMobile) {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    .slider-pagination {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: toRem(-18);
+
+      @media (max-width: $bpMobile) {
+        position: static;
+        margin-top: toRem(12);
+      }
+    }
+  }
+}
+
+//====================================================================================================
+// Популярные: сетка категорий (колонки подстраиваются под ширину, на мобильном 2)
+//====================================================================================================
+.popular {
+  @include av("padding-bottom", 40, 24);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
+    column-gap: toRem(20);
+    row-gap: toRem(30);
+
+    @media (max-width: $bpMobile) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: toRem(12);
+    }
+  }
+}
+
+//====================================================================================================
+// Новинки: слайдер карточек с кнопками покупки
+//====================================================================================================
+.novelties {
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    position: relative;
+    // Место под тени карточек: трек шире контейнера на padding Splide
+    margin: toRem(-12);
+
+    .splide__track {
+      padding-top: toRem(12);
+      padding-bottom: toRem(12);
+    }
+
+    .slider-pagination {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: toRem(-14);
+    }
+
+    @media (max-width: $bpMobile) {
+      margin: 0;
+
+      .splide__track {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .slider-pagination {
+        position: static;
+        margin-top: toRem(12);
+      }
+    }
+  }
+}
+
+//====================================================================================================
+// Скидки и акции: слайдер, 3 карточки на десктопе, дальше 2 и 1
+//====================================================================================================
+.promos {
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    position: relative;
+
+    .slider-pagination {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: toRem(-24);
+
+      @media (max-width: $bpMobile) {
+        position: static;
+        margin-top: toRem(12);
+      }
+    }
+  }
+}
+
+// Ширина карточки акции в макете: от неё считаются все размеры внутри
+$promoWidth: 492;
+
+/**
+ * Возвращает размер из макета карточки акции в долях её ширины (cqw), чтобы композиция масштабировалась целиком
+ */
+@function pc($px) {
+  @return math.div($px, $promoWidth) * 100cqw;
+}
+
+//====================================================================================================
+// Карточка акции: композиция масштабируется целиком (мобильный макет — уменьшенный десктопный)
+//====================================================================================================
+.promo-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 492 / 300;
+  container-type: inline-size;
+  background-color: var(--bg-image-color);
+  @include av("border-radius", 10, 5.93);
+
+  // Зелёная полоса через всю карточку
+  &::before {
+    content: "";
+    position: absolute;
+    top: pc(86);
+    left: 0;
+    right: 0;
+    height: pc(30);
+    background-color: var(--brand-color);
+  }
+
+  // Оранжевый круг «Скидки до 50%» / «Накопи бонусы»
+  &__badge {
+    position: absolute;
+    z-index: 2;
+    top: pc(34);
+    left: pc(24);
+    width: pc(104);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--sale-gradient);
+    box-shadow: pc(2.14) pc(2.14) pc(2.14) rgba(0, 0, 0, 0.15);
+    color: var(--text-light-color);
+    font-family: var(--font-family-promo);
+    line-height: normal;
+    text-transform: uppercase;
+
+    > * {
+      position: absolute;
+    }
+  }
+
+  &__badge-label {
+    top: pc(27.92);
+    left: pc(6);
+    font-size: pc(18.49);
+  }
+
+  &__badge-prefix {
+    top: pc(47.15);
+    left: pc(12.66);
+    font-size: pc(18.49);
+    text-transform: none;
+  }
+
+  &__badge-number {
+    top: pc(39.01);
+    left: pc(37.8);
+    font-size: pc(36.98);
+    font-weight: 700;
+  }
+
+  &__badge-suffix {
+    top: pc(48.63);
+    left: pc(82.18);
+    font-size: pc(18.49);
+    font-weight: 700;
+  }
+
+  &__badge--bonus {
+    font-family: var(--font-family);
+  }
+
+  &__badge-line {
+    top: pc(28);
+    left: pc(6);
+    font-size: pc(18.49);
+  }
+
+  &__badge-accent {
+    top: pc(49);
+    left: pc(16);
+    font-size: pc(20);
+    font-weight: 700;
+  }
+
+  &__image {
+    position: absolute;
+    z-index: 1;
+    top: pc(20);
+    left: pc(312);
+    width: pc(115);
+    max-width: none;
+    height: auto;
+    transform-origin: bottom center;
+    transition: scale 0.3s;
+
+    @media (any-hover: hover) {
+      .promo-card:hover & {
+        scale: 1.1;
+      }
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: pc(223);
+    left: pc(24);
+    right: pc(180);
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+  }
+
+  &__title {
+    color: var(--text-secondary-color);
+    font-size: pc(22);
+    font-weight: 600;
+  }
+
+  &__date {
+    color: var(--text-gray-color);
+    font-size: pc(20);
+  }
+}
+
+//====================================================================================================
+// Услуги: 4 карточки в ряд, на планшете и мобильном по 2
+//====================================================================================================
+.services {
+  @include av("padding-bottom", 40, 24);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: toRem(20);
+
+    @media (max-width: toEm(variables.$tablet)) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(12);
+    }
+  }
+}
+
+//====================================================================================================
+// Карточка услуги: иконка и название по центру (на мобильном — белая, всё слева)
+//====================================================================================================
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: var(--bg-image-color);
+  @include av("border-radius", 10, 8);
+  @include av("padding-top", 58, 12);
+  @include av("padding-bottom", 45, 12);
+  @include av("padding-left", 28, 12);
+  @include av("padding-right", 28, 12);
+  @include av("gap", 32, 12);
+
+  @media (max-width: $bpMobile) {
+    align-items: flex-start;
+    background-color: var(--surface-color);
+  }
+
+  &__icon {
+    width: auto;
+    transition: scale 0.3s;
+    @include av("height", 90, 48);
+
+    @media (any-hover: hover) {
+      .service-card:hover & {
+        scale: 1.1;
+      }
+    }
+  }
+
+  &__name {
+    color: var(--text-secondary-color);
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    text-wrap: balance;
+    @include av("font-size", 22, 14);
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      font-weight: 400;
+      line-height: toRem(20);
+      text-align: left;
+      text-wrap: wrap;
+      // Длинные слова («Видео&shy;консультация») переносятся по мягкому переносу из разметки
+      hyphens: manual;
+    }
+  }
+}
+
+//====================================================================================================
+// Наш TV: слайдер видео, открываются в lightGallery
+//====================================================================================================
+.tv {
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    position: relative;
+
+    .slider-pagination {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: toRem(-24);
+
+      @media (max-width: $bpMobile) {
+        position: static;
+        margin-top: toRem(12);
+      }
+    }
+  }
+}
+
+// Ширина превью видео в макете: от неё считаются кнопка и логотип поверх
+$tvWidth: 364;
+
+/**
+ * Возвращает размер из макета превью видео в долях его ширины (cqw)
+ */
+@function tvc($px) {
+  @return math.div($px, $tvWidth) * 100cqw;
+}
+
+//====================================================================================================
+// Карточка видео: превью с кнопкой и логотипом, название, дата
+//====================================================================================================
+.tv-card {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(20);
+
+  // Кнопка, открывающая видео в lightGallery
+  &__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 364 / 250;
+    cursor: pointer;
+    container-type: inline-size;
+    @include av("border-radius", 10, 8);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.3s;
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    width: tvc(52);
+    color: var(--play-color);
+    translate: -50% -50%;
+    transition: color 0.3s, scale 0.3s;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    right: tvc(19.5);
+    bottom: tvc(20);
+    width: tvc(111.49);
+  }
+
+  @media (any-hover: hover) {
+    &__media:hover &__image {
+      scale: 1.1;
+    }
+
+    &__media:hover &__play {
+      color: var(--brand-color);
+      scale: 1.1;
+    }
+  }
+
+  &__title {
+    color: var(--text-color);
+    font-size: toRem(16);
+    font-weight: 600;
+    line-height: 1.05;
+
+    @media (max-width: $bpMobile) {
+      line-height: toRem(20);
+    }
+  }
+
+  &__date {
+    color: var(--text-old-price-color);
+    font-size: toRem(13);
+    font-weight: 600;
+    line-height: 1.05;
+
+    @media (max-width: $bpMobile) {
+      line-height: toRem(20);
+    }
+  }
+}
+
+//====================================================================================================
+// Адреса магазинов: карта слева, карточки справа (на планшете и мобильном — друг под другом)
+//====================================================================================================
+.shops {
+  @include av("padding-bottom", 40, 24);
+
+  &__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) toRem(520);
+    gap: toRem(20);
+
+    @media (max-width: toEm(variables.$tablet)) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(12);
+    }
+  }
+
+  &__map {
+    position: relative;
+    min-height: toRem(604);
+    overflow: hidden;
+    background-color: var(--bg-image-color);
+
+    // Пока открыт балун, кнопки зума не перекрывают его (класс ставит shops-map.js)
+    &.is-balloon-open .ymaps3--controls {
+      visibility: hidden;
+    }
+
+    @media (max-width: toEm(variables.$tablet)) {
+      min-height: 0;
+      aspect-ratio: 292 / 174.72;
+      transition: height 0.3s;
+
+      // Раскрыта под открытый балун (класс ставит shops-map.js)
+      &.is-expanded {
+        aspect-ratio: auto;
+        height: toRem(440);
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(12);
+    }
+  }
+}
+
+//====================================================================================================
+// Карточка магазина
+//====================================================================================================
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(12);
+  height: 100%;
+  padding: toRem(20);
+  border-radius: toRem(10);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+  font-size: toRem(14);
+  line-height: toRem(22);
+
+  &__name {
+    display: flex;
+    gap: toRem(12);
+    font-weight: 700;
+    @include av("font-size", 18, 16);
+    @include av("line-height", 24, 22);
+
+    svg {
+      flex-shrink: 0;
+      width: toRem(17);
+      height: toRem(21);
+      color: var(--brand-color);
+    }
+  }
+
+  &__more {
+    align-self: flex-start;
+    color: var(--brand-color);
+    cursor: pointer;
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+//====================================================================================================
+// Метка и балун на карте магазинов (элементы создаются в shops-map.js)
+//====================================================================================================
+.shops-marker {
+  position: relative;
+  // Кончик иконки 20×33 указывает на точку (как iconImageOffset [-10, -30] в старой карте)
+  translate: toRem(-10) toRem(-30);
+
+  // Вторая метка в той же точке сдвигается, чтобы не прятаться под первой
+  &--shifted {
+    translate: toRem(4) toRem(-30);
+  }
+
+  &__icon {
+    display: block;
+    width: toRem(20);
+    height: toRem(33);
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.is-open {
+    z-index: 10;
+  }
+}
+
+.shops-balloon {
+  position: absolute;
+  bottom: calc(100% + toRem(8));
+  left: 50%;
+  display: none;
+  width: toRem(280);
+  padding: toRem(16);
+  border-radius: toRem(8);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-dropdown);
+  color: var(--text-color);
+  font-size: toRem(13);
+  line-height: toRem(19);
+  translate: -50% 0;
+  cursor: default;
+
+  .shops-marker.is-open & {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+  }
+
+  &__close {
+    position: absolute;
+    top: toRem(6);
+    right: toRem(6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: toRem(24);
+    height: toRem(24);
+    color: var(--icon-color);
+    font-size: toRem(20);
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  &__name {
+    padding-right: toRem(20);
+    font-size: toRem(15);
+    font-weight: 700;
+    line-height: toRem(20);
+  }
+
+  a {
+    color: var(--brand-color);
+  }
+}
+
+//====================================================================================================
+// Новости: 3 карточки в ряд с разделителями, уже — по одной в строку
+//====================================================================================================
+.news {
+  @include av("padding-bottom", 40, 24);
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: toRem(40);
+
+    > li {
+      position: relative;
+    }
+
+    // Вертикальный разделитель посередине промежутка между карточками
+    > li + li::before {
+      content: "";
+      position: absolute;
+      top: toRem(52);
+      left: toRem(-20);
+      width: toRem(1);
+      height: toRem(157);
+      background-color: var(--line-dark-color);
+    }
+
+    @media (max-width: toEm(variables.$pc)) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: toRem(20);
+
+      > li + li::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(12);
+    }
+  }
+}
+
+//====================================================================================================
+// Карточка новости: заголовок, под ним фото и текст (на мобильном всё столбиком)
+//====================================================================================================
+.news-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-news);
+  @include av("border-radius", 10, 8);
+  @include av("padding", 20, 12);
+  @include av("gap", 20, 12);
+
+  @media (max-width: $bpMobile) {
+    box-shadow: none;
+  }
+
+  &__title {
+    color: var(--text-news-color);
+    font-size: toRem(18);
+    font-weight: 600;
+    line-height: 1.186;
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      font-size: toRem(16);
+      font-weight: 700;
+      line-height: toRem(23);
+    }
+  }
+
+  // Вся карточка кликабельна
+  &__link {
+    transition: color 0.2s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    @media (any-hover: hover) {
+      .news-card:hover & {
+        color: var(--brand-color);
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    gap: toRem(20);
+
+    @media (max-width: $bpMobile) {
+      flex-direction: column;
+      gap: toRem(12);
+    }
+  }
+
+  &__image {
+    flex-shrink: 0;
+    width: toRem(150);
+    max-height: toRem(180);
+    object-fit: cover;
+
+    @media (max-width: $bpMobile) {
+      width: 100%;
+      height: toRem(170);
+      max-height: none;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: toRem(8);
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(12);
+    }
+  }
+
+  &__date {
+    padding: toRem(3) toRem(5) toRem(5);
+    background-color: var(--bg-image-color);
+    color: var(--text-news-color);
+    font-size: toRem(13);
+    line-height: 1.186;
+
+    @media (max-width: $bpMobile) {
+      padding: 0;
+      background-color: transparent;
+      color: var(--text-muted-color);
+      font-size: toRem(12);
+      line-height: toRem(17);
+    }
+  }
+
+  &__text {
+    color: var(--icon-color);
+    font-size: toRem(14);
+    line-height: 1.186;
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      line-height: toRem(20);
+    }
+  }
+}
+
+//====================================================================================================
+// Производители дверей: слайдер колонок по 3 карточки (6 колонок = сетка 6×3 на десктопе)
+//====================================================================================================
+.makers {
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    position: relative;
+    // Место под тени карточек: трек шире контейнера на padding Splide
+    margin: toRem(-12);
+
+    // Пагинация под лентой: нижний отступ под тени уже не нужен
+    @media (max-width: $bpMobile) {
+      margin-bottom: 0;
+    }
+
+    .splide__track {
+      padding-top: toRem(12);
+      padding-bottom: toRem(12);
+    }
+
+    .slider-pagination {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: toRem(-14);
+
+      @media (max-width: $bpMobile) {
+        position: static;
+        margin: 0 toRem(12);
+      }
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    @include av("gap", 20, 12);
+  }
+}
+
+//====================================================================================================
+// Карточка производителя: логотип и название
+//====================================================================================================
+.maker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: toRem(10);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+  color: var(--text-color);
+  text-align: center;
+  @include av("height", 156, 128);
+  @include av("padding-top", 20, 8);
+  @include av("padding-bottom", 20, 8);
+  @include av("padding-left", 20, 12);
+  @include av("padding-right", 20, 12);
+  @include av("gap", 12, 8);
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: toRem(183);
+    height: toRem(80);
+    flex-shrink: 0;
+
+    img {
+      max-height: 100%;
+      object-fit: contain;
+      transition: scale 0.3s;
+
+      @media (any-hover: hover) {
+        .maker-card:hover & {
+          scale: 1.1;
+        }
+      }
+    }
+  }
+
+  &__name {
+    @include av("font-size", 16, 14);
+    @include av("line-height", 24, 20);
   }
 }

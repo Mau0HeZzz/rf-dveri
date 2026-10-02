@@ -64,12 +64,13 @@ body {
 	// Отзывчивая
 	[class*="__container"] {
 		@if (variables.$maxWidthContainer>0) {
-			max-width: mixins.toRem(variables.$containerWidth);
+			max-width: mixins.toRem(variables.$maxWidthContainer);
 			margin: 0 auto;
 		}
 		@if (variables.$containerPadding>0) {
 			@if (variables.$maxWidthContainer>0) {
-				padding: 0 mixins.toRem(math.div(variables.$containerPadding, 2));
+				// Поля по бокам за счёт ширины, чтобы контейнер не превышал $maxWidthContainer
+				width: calc(100% - #{mixins.toRem(variables.$containerPadding)});
 			} @else {
 				@include mixins.adaptiveValue("padding-left", math.div(variables.$containerPadding, 2), 15);
 				@include mixins.adaptiveValue("padding-right", math.div(variables.$containerPadding, 2), 15);
@@ -118,6 +119,8 @@ body {
 // Подключение стилей отдельных блоков
 @include meta.load-css("header");
 @include meta.load-css("footer");
+@include meta.load-css("mobile-nav");
+@include meta.load-css("contact-popup");
 
 // Подключение стилей отдельных страниц
 @include meta.load-css("home");
