@@ -1,0 +1,1112 @@
+@use "base/mixins" as *;
+@use "variables";
+
+// Брейкпоинт, ниже которого шапка становится мобильной (бургер, иконки, поиск второй строкой)
+$bpHeader: toEm(1199.98);
+// Брейкпоинт, ниже которого баннеры в меню каталога уже
+$bpCatalogNarrow: toEm(1439.98);
+// Брейкпоинт, ниже которого корзина переезжает в нижнюю панель
+$bpMobile: toEm(variables.$mobile);
+// Длительность сворачивания шапки при прокрутке
+$collapse: 0.3s;
+
+//====================================================================================================
+// Шапка: верхняя строка (телефоны, служебное меню), основная (логотип, каталог, поиск, действия),
+// нижняя (разделы каталога). На мобильном — только основная строка и поиск
+//====================================================================================================
+// Отступ под фиксированную шапку: высоту считает setBodyHeightsVars, до её расчёта — высота по макету
+.wrapper {
+  padding-top: var(--headerHeight, #{toRem(210)});
+
+  @media (max-width: $bpHeader) {
+    padding-top: var(--headerHeight, #{toRem(124)});
+  }
+}
+
+// Модификатор _header-fixed вешает headerScroll при прокрутке: на десктопе сворачивается верхняя строка
+// и уменьшается основная, на мобильном сворачивается поиск
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  background-color: var(--bg-page-color);
+  line-height: normal;
+  transition: box-shadow $collapse;
+
+  &._header-fixed {
+    box-shadow: var(--shadow-card);
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Верхняя строка
+  //--------------------------------------------------------------------------------------------------
+  // Свёртывание через grid-template-rows: 1fr → 0fr, чтобы анимировать высоту без её знания
+  &__top {
+    display: grid;
+    grid-template-rows: 1fr;
+    border-bottom: toRem(1) solid var(--brand-color);
+    transition: grid-template-rows $collapse, opacity $collapse, visibility $collapse, border-bottom-width $collapse;
+
+    ._header-fixed & {
+      grid-template-rows: 0fr;
+      border-bottom-width: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (max-width: $bpHeader) {
+      display: none;
+    }
+  }
+
+  &__top-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(28);
+    min-height: toRem(55);
+    transition: min-height $collapse;
+
+    ._header-fixed & {
+      min-height: 0;
+      overflow: hidden;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: center;
+    gap: toRem(28);
+  }
+
+  &__phone {
+    color: var(--text-color);
+    font-size: toRem(18);
+    font-weight: 600;
+    line-height: toRem(24);
+    white-space: nowrap;
+    transition: color 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+  }
+
+  &__messengers {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+  }
+
+  &__messenger {
+    display: block;
+    transition: opacity 0.2s;
+
+    img {
+      display: block;
+      width: toRem(21);
+      height: toRem(21);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // Служебное меню с выпадающими списками
+  &__service-list {
+    display: flex;
+    align-items: center;
+    gap: toRem(28);
+  }
+
+  &__service-item {
+    position: relative;
+
+    // Мостик до выпадающего списка, чтобы он не закрывался при переводе курсора
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      height: toRem(16);
+    }
+  }
+
+  &__service-link {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    color: var(--text-color);
+    font-size: toRem(16);
+    line-height: toRem(24);
+    transition: color 0.2s;
+
+    &--dropdown::after {
+      content: "";
+      width: toRem(12);
+      height: toRem(12);
+      background: url("../img/header/dropdown-arrow.svg") center / contain no-repeat;
+      transition: rotate 0.2s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+
+    .header__service-item:hover &,
+    .header__service-item:focus-within & {
+      &::after {
+        rotate: 180deg;
+      }
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + toRem(16));
+    left: 0;
+    z-index: 2;
+    width: toRem(280);
+    padding-top: toRem(2);
+    border-top: toRem(2) solid var(--brand-color);
+    border-radius: toRem(6);
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-dropdown);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 toRem(8);
+    transition: opacity 0.2s, translate 0.2s, visibility 0.2s;
+
+    // Список у правого края выравнивается по правой стороне пункта
+    &--right {
+      right: 0;
+      left: auto;
+    }
+
+    .header__service-item:hover &,
+    .header__service-item:focus-within & {
+      opacity: 1;
+      visibility: visible;
+      translate: none;
+    }
+  }
+
+  &__dropdown-link {
+    display: block;
+    padding: toRem(14) toRem(24);
+    color: var(--text-menu-color);
+    font-size: toRem(16);
+    line-height: toRem(24);
+    transition: background-color 0.2s, color 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--brand-light-color);
+        color: var(--brand-dark-color);
+      }
+    }
+
+    &:focus-visible {
+      background-color: var(--brand-light-color);
+      color: var(--brand-dark-color);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Основная строка
+  //--------------------------------------------------------------------------------------------------
+  &__main {
+    position: relative;
+
+    // Зелёная линия под строкой с логотипом на мобильном
+    @media (max-width: $bpHeader) {
+      &::after {
+        content: "";
+        position: absolute;
+        top: toRem(59);
+        right: 0;
+        left: 0;
+        height: toRem(1);
+        background-color: var(--brand-color);
+      }
+    }
+  }
+
+  &__main-inner {
+    display: flex;
+    align-items: center;
+    min-height: toRem(104);
+    transition: min-height $collapse, padding-bottom $collapse;
+
+    ._header-fixed & {
+      min-height: toRem(72);
+    }
+
+    @media (max-width: $bpHeader) {
+      flex-wrap: wrap;
+      min-height: 0;
+      padding: toRem(8) 0 toRem(12);
+
+      // Без поиска остаётся строка 60: 8 + 44 + 8
+      ._header-fixed & {
+        min-height: 0;
+        padding-bottom: toRem(8);
+      }
+    }
+  }
+
+  &__burger {
+    display: none;
+
+    img {
+      display: block;
+      width: toRem(44);
+      height: toRem(44);
+    }
+
+    @media (max-width: $bpHeader) {
+      display: block;
+      flex-shrink: 0;
+      margin: 0 toRem(8) 0 toRem(-8);
+      cursor: pointer;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      width: toRem(236);
+      height: auto;
+    }
+
+    @media (max-width: $bpHeader) {
+      img {
+        width: toRem(100);
+      }
+    }
+  }
+
+  // Кнопка «Каталог»: при открытом меню полоски превращаются в крестик
+  &__catalog-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: toRem(12);
+    flex-shrink: 0;
+    width: toRem(180);
+    height: toRem(52);
+    margin-left: toRem(20);
+    border-radius: toRem(999);
+    background-color: var(--brand-color);
+    color: var(--text-light-color);
+    font-size: toRem(22);
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        filter: brightness(0.92);
+      }
+    }
+
+    @media (max-width: $bpHeader) {
+      display: none;
+    }
+  }
+
+  &__catalog-icon {
+    position: relative;
+    width: toRem(18);
+    height: toRem(14);
+
+    span,
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: toRem(2);
+      border-radius: toRem(2);
+      background-color: currentColor;
+      transition: top 0.2s, rotate 0.2s, opacity 0.2s;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    span {
+      top: toRem(6);
+    }
+
+    &::after {
+      top: toRem(12);
+    }
+
+    [aria-expanded="true"] & {
+      span {
+        opacity: 0;
+      }
+
+      &::before,
+      &::after {
+        top: toRem(6);
+      }
+
+      &::before {
+        rotate: 45deg;
+      }
+
+      &::after {
+        rotate: -45deg;
+      }
+    }
+  }
+
+  // Поиск
+  &__search {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    @include av("margin-left", 48, 0);
+    @include av("margin-right", 48, 0);
+
+    @media (max-width: $bpHeader) {
+      flex-basis: 100%;
+      order: 1;
+      height: toRem(44);
+      margin: toRem(16) 0 0;
+      transition: height $collapse, margin-top $collapse, opacity $collapse, visibility $collapse;
+
+      ._header-fixed & {
+        height: 0;
+        margin-top: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__search-input {
+    width: 100%;
+    height: toRem(52);
+    padding: 0 toRem(56) 0 toRem(24);
+    border: toRem(1) solid var(--text-gray-color);
+    border-radius: toRem(999);
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: toRem(18);
+    transition: border-color 0.2s;
+
+    &::placeholder {
+      color: var(--text-gray-color);
+    }
+
+    &:focus {
+      border-color: var(--brand-color);
+      outline: none;
+    }
+
+    // Убираем встроенный крестик очистки
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+
+    @media (max-width: $bpHeader) {
+      height: toRem(44);
+      padding: 0 toRem(40) 0 toRem(12);
+      border-radius: toRem(6);
+      font-size: toRem(16);
+    }
+  }
+
+  &__search-btn {
+    position: absolute;
+    top: 50%;
+    right: toRem(12);
+    width: toRem(40);
+    height: toRem(40);
+    background: url("../img/header/search.svg") center / toRem(15) no-repeat;
+    translate: 0 -50%;
+    cursor: pointer;
+
+    @media (max-width: $bpHeader) {
+      right: 0;
+    }
+  }
+
+  // Войти, сравнение, избранное, корзина
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: toRem(5);
+    flex-shrink: 0;
+
+    @media (max-width: $bpHeader) {
+      gap: toRem(8);
+      margin: 0 toRem(-8) 0 auto;
+    }
+  }
+
+  &__actions-item {
+    @media (max-width: $bpHeader) {
+      &--login {
+        order: 1;
+      }
+
+      // Корзина в шапке нужна, пока нет нижней панели
+      &--cart {
+        order: 2;
+
+        .header__action-icon {
+          padding: toRem(8);
+          object-fit: contain;
+        }
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      &--cart {
+        display: none;
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(6);
+    min-width: toRem(64);
+    color: var(--text-color);
+    font-size: toRem(16);
+    line-height: toRem(22);
+    transition: color 0.2s;
+
+    picture {
+      display: block;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+
+    @media (min-width: $bpHeader) {
+      .header__actions-item--compare & {
+        min-width: toRem(96);
+      }
+
+      .header__actions-item--favorite & {
+        min-width: toRem(108);
+      }
+
+      .header__actions-item--cart & {
+        min-width: toRem(80);
+      }
+    }
+
+    @media (max-width: $bpHeader) {
+      min-width: 0;
+    }
+  }
+
+  &__action-icon {
+    display: block;
+    width: auto;
+    height: toRem(28);
+
+    @media (max-width: $bpHeader) {
+      width: toRem(44);
+      height: toRem(44);
+    }
+  }
+
+  &__action-label {
+    @media (max-width: $bpHeader) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Нижняя строка: разделы каталога
+  //--------------------------------------------------------------------------------------------------
+  &__nav {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-card);
+
+    @media (max-width: $bpHeader) {
+      display: none;
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(20);
+    min-height: toRem(50);
+  }
+
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    color: var(--text-color);
+    font-size: toRem(16);
+    line-height: toRem(22);
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s;
+
+    img {
+      width: toRem(24);
+      height: toRem(24);
+    }
+
+    &--sale {
+      color: var(--sale-color);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+  }
+}
+
+//====================================================================================================
+// Большое меню каталога (десктоп): разделы слева, каскад подкатегорий, вертикальный слайдер баннеров
+//====================================================================================================
+.catalog-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 3;
+  // До низа экрана: вычитаем верхнюю строку (56) и строку с логотипом (104), дальше — внутренний скролл
+  max-height: calc(100dvh - toRem(160));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: toRem(44) 0 toRem(60);
+  border-top: toRem(1) solid var(--brand-color);
+  background-color: var(--bg-page-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s, max-height $collapse;
+
+  // У свёрнутой шапки остаётся только строка с логотипом (72)
+  ._header-fixed & {
+    max-height: calc(100dvh - toRem(72));
+  }
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: $bpHeader) {
+    display: none;
+  }
+
+  &__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: toRem(325) minmax(0, 1fr) toRem(364);
+    align-items: start;
+
+    @media (max-width: $bpCatalogNarrow) {
+      grid-template-columns: toRem(325) minmax(0, 1fr) toRem(280);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Разделы (левая колонка)
+  //--------------------------------------------------------------------------------------------------
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+    margin-left: toRem(12);
+    padding: toRem(20) toRem(15);
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-card);
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+  }
+
+  &__section-link {
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+    // Нижний отступ на 1px меньше: в макете линия входит в высоту 42
+    padding: toRem(10) toRem(10) toRem(9);
+    border-bottom: toRem(1) solid var(--line-color);
+    border-radius: toRem(5);
+    color: var(--text-color);
+    font-size: toRem(16);
+    line-height: toRem(22);
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+
+    span {
+      flex: 1 1 auto;
+    }
+
+    // Стрелка у разделов с подкатегориями: вниз, у активного — вправо
+    .catalog-menu__section:has(.catalog-menu__panel) &::after {
+      content: "";
+      flex-shrink: 0;
+      width: toRem(12);
+      height: toRem(12);
+      background: url("../img/catalog-menu/arrow-down.svg") center / toRem(12) toRem(6) no-repeat;
+    }
+
+    .catalog-menu__section.is-active & {
+      background-color: var(--line-light-color);
+
+      &::after {
+        background-image: url("../img/catalog-menu/arrow-right.svg");
+        background-size: toRem(6) toRem(12);
+      }
+    }
+
+    .catalog-menu__section--group-end & {
+      padding-bottom: toRem(19);
+      border-bottom-color: var(--icon-color);
+    }
+  }
+
+  &__section-icon {
+    flex-shrink: 0;
+    width: toRem(22);
+    height: toRem(22);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+  }
+
+  // «Вызвать замерщика», «Заказать звонок»
+  &__action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: toRem(10);
+    width: 100%;
+    padding: toRem(10);
+    color: var(--action-color);
+    font-size: toRem(16);
+    line-height: toRem(22);
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    img {
+      width: toRem(22);
+      height: toRem(22);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Каскад подкатегорий: у каждого уровня — своя колонка, вложенный список встаёт справа от родителя
+  //--------------------------------------------------------------------------------------------------
+  &__panel {
+    position: absolute;
+    top: toRem(30);
+    @include av("left", 384, 350);
+    @include av("right", 492, 300);
+    display: none;
+
+    @media (max-width: $bpCatalogNarrow) {
+      right: calc(toRem(280) + toRem(40));
+    }
+
+    .catalog-menu__section.is-active & {
+      display: block;
+    }
+  }
+
+  &__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+    width: calc((100% - toRem(60)) / 3);
+
+    // Вложенный уровень
+    & & {
+      position: absolute;
+      top: 0;
+      left: calc(100% + toRem(30));
+      display: none;
+      width: 100%;
+    }
+
+    .catalog-menu__item.is-active > & {
+      display: flex;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(10);
+    color: var(--text-secondary-color);
+    font-size: toRem(16);
+    line-height: toRem(22);
+    transition: color 0.2s;
+
+    // Стрелка у пунктов с вложенным уровнем
+    .catalog-menu__item:has(> .catalog-menu__list) > &::after {
+      content: "";
+      flex-shrink: 0;
+      width: toRem(4);
+      height: toRem(8);
+      background: url("../img/catalog-menu/arrow-small.svg") center / contain no-repeat;
+    }
+
+    .catalog-menu__item.is-active > & {
+      color: var(--brand-color);
+      font-weight: 700;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Вертикальный слайдер баннеров
+  //--------------------------------------------------------------------------------------------------
+  // У каждого раздела свой слайдер, виден только у активного; стоит в правой колонке сетки
+  &__promo {
+    top: 0;
+    right: 0;
+    display: none;
+    width: toRem(364);
+    // Splide ставит инициализированному слайдеру visibility: visible (.splide.is-initialized) —
+    // возвращаем наследование, чтобы у закрытого меню слайдер не ловил клики и фокус
+    &.splide.is-initialized,
+    &.splide.is-rendered {
+      visibility: inherit;
+    }
+
+    // Базовый .splide задаёт position: relative и подключается позже — поднимаем специфичность
+    &.splide {
+      position: absolute;
+    }
+
+    @media (max-width: $bpCatalogNarrow) {
+      width: toRem(280);
+    }
+
+    .catalog-menu__section.is-active & {
+      display: block;
+    }
+  }
+}
+
+// Баннер подборки: картинка и полупрозрачная плашка слева (цвет — в --banner-tint)
+.catalog-banner {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: toRem(5);
+  overflow: hidden;
+  color: var(--text-light-color);
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.4s;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: toRem(160);
+    padding: toRem(25);
+    background-color: var(--banner-tint, rgba(25, 27, 23, 0.52));
+  }
+
+  &__icon {
+    width: toRem(27);
+    height: toRem(27);
+    margin-bottom: toRem(7);
+  }
+
+  &__title {
+    font-size: toRem(16);
+    font-weight: 700;
+  }
+
+  &__more {
+    margin-top: auto;
+    font-size: toRem(13);
+    text-decoration: underline;
+    text-underline-offset: 19%;
+  }
+
+  @media (any-hover: hover) {
+    &:hover &__image {
+      scale: 1.05;
+    }
+  }
+}
+
+//====================================================================================================
+// Мобильное меню: панель слева, подменю въезжают справа поверх предыдущего уровня
+//====================================================================================================
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0.3s;
+
+  &.is-open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @media (min-width: $bpHeader) {
+    display: none;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--overlay-color);
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    .mobile-menu.is-open & {
+      opacity: 1;
+    }
+  }
+
+  // Ширина по макету: 282 из 320 и 344 из 390
+  &__drawer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 88%;
+    max-width: toRem(400);
+    background-color: var(--surface-color);
+    overflow: hidden;
+    translate: -100% 0;
+    transition: translate 0.3s;
+
+    .mobile-menu.is-open & {
+      translate: none;
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background-color: var(--surface-color);
+    line-height: normal;
+    transition: translate 0.3s;
+
+    // Подменю до появления и при закрытии
+    &--sub {
+      translate: 100% 0;
+    }
+
+    &.is-active {
+      translate: none;
+    }
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: toRem(24) 1fr toRem(24);
+    align-items: center;
+    gap: toRem(16);
+    min-height: toRem(64);
+    padding: toRem(18) toRem(16);
+
+    // В подменю вместо логотипа ссылка на страницу раздела
+    &--sub {
+      grid-template-columns: toRem(24) 1fr;
+    }
+  }
+
+  &__close {
+    width: toRem(24);
+    height: toRem(24);
+    background: url("../img/header/close.svg") center / contain no-repeat;
+    cursor: pointer;
+  }
+
+  &__logo {
+    justify-self: center;
+
+    img {
+      display: block;
+      width: toRem(100);
+      height: auto;
+    }
+  }
+
+  &__page-link {
+    color: var(--brand-color);
+    font-size: toRem(16);
+    font-weight: 600;
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+    // Снизу в макете большой отступ до линии
+    padding: toRem(10) toRem(18) toRem(35);
+    border-bottom: toRem(1) solid var(--brand-border-color);
+  }
+
+  &__phones-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(10);
+    min-height: toRem(52);
+  }
+
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(2);
+    color: var(--text-contrast-color);
+    font-size: toRem(16);
+    font-weight: 600;
+  }
+
+  &__quick {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: toRem(4) toRem(14);
+  }
+
+  &__quick-link {
+    color: var(--brand-dark-color);
+    font-size: toRem(12);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  // Пункт меню со стрелкой вправо
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    width: 100%;
+    min-height: toRem(48);
+    padding: toRem(12) toRem(18);
+    border-bottom: toRem(1) solid var(--brand-border-color);
+    color: var(--text-contrast-color);
+    font-size: toRem(16);
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      flex-shrink: 0;
+      width: toRem(18);
+      height: toRem(18);
+      margin-left: auto;
+      background: url("../img/header/menu-arrow.svg") center / contain no-repeat;
+    }
+
+    img {
+      flex-shrink: 0;
+      width: toRem(17);
+      height: toRem(17);
+    }
+
+    &--sale {
+      color: var(--sale-color);
+    }
+
+    // Пункт без вложенного уровня в подменю — обычная ссылка
+    &--leaf::after {
+      display: none;
+    }
+
+    // Строка «назад» с названием раздела
+    &--back {
+      &::before {
+        content: "";
+        flex-shrink: 0;
+        width: toRem(18);
+        height: toRem(18);
+        background: url("../img/header/menu-back.svg") center / contain no-repeat;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &:active {
+      background-color: var(--brand-tint-color);
+    }
+  }
+
+  // Пункты каталога в макете чуть ниже остальных
+  &__list--catalog &__link {
+    min-height: toRem(43);
+    padding-block: toRem(10);
+  }
+}

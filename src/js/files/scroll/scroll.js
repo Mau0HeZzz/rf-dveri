@@ -91,13 +91,15 @@ export function headerScroll() {
 	const headerShow = header.hasAttribute('data-scroll-show');
 	const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
 	const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+	// Класс прокрученной шапки (data-scroll-class), по умолчанию _header-scroll
+	const scrollClass = header.dataset.scrollClass || '_header-scroll';
 	let scrollDirection = 0;
 	let timer;
 	document.addEventListener("windowScroll", function (e) {
 		const scrollTop = window.scrollY;
 		clearTimeout(timer);
 		if (scrollTop >= startPoint) {
-			!header.classList.contains('_header-scroll') ? header.classList.add('_header-scroll') : null;
+			!header.classList.contains(scrollClass) ? header.classList.add(scrollClass) : null;
 			if (headerShow) {
 				if (scrollTop > scrollDirection) {
 					// downscroll code
@@ -111,7 +113,7 @@ export function headerScroll() {
 				}, headerShowTimer);
 			}
 		} else {
-			header.classList.contains('_header-scroll') ? header.classList.remove('_header-scroll') : null;
+			header.classList.contains(scrollClass) ? header.classList.remove(scrollClass) : null;
 			if (headerShow) {
 				header.classList.contains('_header-show') ? header.classList.remove('_header-show') : null;
 			}

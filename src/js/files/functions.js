@@ -768,14 +768,42 @@ export function dataMediaQueries(array, dataSetValue) {
 
 export function setBodyHeightsVars(headerSelector='.header', footerSelector = '.footer') {
   document.addEventListener("DOMContentLoaded", () => {
-    setBodyHeightsVar({
-      headerSelector,
-      footerSelector,
-      headerVarName: '--headerHeight',
-      footerVarName: '--footerHeight'
-    })
+    const header = document.querySelector(headerSelector);
+    // Класс свёрнутой шапки (тот же, что вешает headerScroll)
+    const scrollClass = header?.dataset.scrollClass || '_header-scroll';
+    let fullPending = true;
+
+    /**
+     * Пересчитывает полную высоту шапки, если она сейчас развёрнута и не анимируется
+     * (иначе ждёт следующего тика интервала)
+     */
+    const tryUpdateFull = () => {
+      if (!fullPending) return;
+      if (header && (header.classList.contains(scrollClass) || header.getAnimations({ subtree: true }).length)) return;
+      setBodyHeightsVar({
+        headerSelector,
+        footerSelector,
+        headerVarName: '--headerHeight',
+        footerVarName: '--footerHeight'
+      });
+      fullPending = false;
+    };
+
+    /**
+     * Помечает полную высоту устаревшей и пробует пересчитать её
+     */
+    const requestFullUpdate = () => {
+      fullPending = true;
+      tryUpdateFull();
+    };
+
+    tryUpdateFull();
+    // После загрузки шрифтов и при смене ширины высота шапки меняется
+    window.addEventListener('load', requestFullUpdate);
+    window.addEventListener('resize', debounce(requestFullUpdate, 150));
 
     setInterval(() => {
+      tryUpdateFull();
       setBodyHeightsVar({
         headerSelector,
         footerSelector,
