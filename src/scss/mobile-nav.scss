@@ -1,0 +1,79 @@
+@use "base/mixins" as *;
+@use "variables";
+
+// Брейкпоинт, ниже которого показывается нижняя панель
+$bpMobile: toEm(variables.$mobile);
+// Высота панели: линия 1 + отступы 2 + пункт 60 + отступ 2
+$navHeight: 65;
+
+//====================================================================================================
+// Нижняя мобильная навигация: 5 пунктов, закреплена у нижнего края экрана
+//====================================================================================================
+.mobile-nav {
+  display: none;
+
+  @media (max-width: $bpMobile) {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: toRem(2) 0 calc(toRem(2) + env(safe-area-inset-bottom));
+    border-top: toRem(1) solid var(--brand-color);
+    background-color: var(--surface-color);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  // Пункт; модификатор --active — текущий раздел
+  &__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: toRem(4);
+    width: 100%;
+    height: toRem(60);
+    // Прозрачная рамка сверху уравновешивает нижнюю, чтобы у активного пункта не прыгало содержимое
+    border-block: toRem(3) solid transparent;
+    border-radius: toRem(6);
+    color: var(--text-color);
+    font-size: toRem(12);
+    line-height: toRem(18);
+    letter-spacing: toRem(-0.24);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:active,
+    &--active {
+      background-color: var(--brand-tint-color);
+    }
+
+    &--active {
+      border-bottom-color: var(--brand-dark-color);
+    }
+
+    &:focus-visible {
+      outline: toRem(2) solid var(--text-color);
+      outline-offset: toRem(-2);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: toRem(24);
+    height: toRem(24);
+  }
+}
+
+// Место под панель внизу страницы, чтобы она не перекрывала подвал
+body {
+  @media (max-width: $bpMobile) {
+    padding-bottom: calc(toRem($navHeight) + env(safe-area-inset-bottom));
+  }
+}

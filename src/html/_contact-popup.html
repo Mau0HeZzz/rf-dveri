@@ -1,0 +1,56 @@
+<div id="contact" aria-hidden="true" class="popup contact-popup">
+  <div class="popup__wrapper">
+    <div class="popup__content" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="popup__dragclose" data-dragclose></div>
+      <div class="contact-popup__head">
+        <p class="contact-popup__title" id="contact-title">Связаться с нами</p>
+        <button type="button" class="contact-popup__close" data-close aria-label="Закрыть"></button>
+      </div>
+      <div class="popup__body contact-popup__body">
+        <p class="contact-popup__subtitle">Написать</p>
+        <ul class="contact-popup__list">
+          <li>
+            <a href="#" class="contact-popup__link">
+              <img class="contact-popup__icon" src="/img/contact/chat.svg" alt="" width="32" height="32">
+              <span>Онлайн-чат</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="contact-popup__link" target="_blank" rel="noopener">
+              <img class="contact-popup__icon" src="/img/contact/max.png" alt="" width="32" height="32">
+              <span>MAX</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="contact-popup__link" target="_blank" rel="noopener">
+              <img class="contact-popup__icon" src="/img/contact/whatsapp.svg" alt="" width="32" height="32">
+              <span>WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="contact-popup__link">
+              <img class="contact-popup__icon" src="/img/contact/mail.svg" alt="" width="32" height="32">
+              <span>Написать на почту</span>
+            </a>
+          </li>
+        </ul>
+
+        <form action="#" class="contact-popup__form">
+          <label class="contact-popup__subtitle" for="contact-phone">Заказать звонок</label>
+          <input
+            id="contact-phone"
+            class="contact-popup__input"
+            type="tel"
+            name="phone"
+            placeholder="+7 (___) ___-__-__"
+            autocomplete="tel"
+            required
+            data-inputmask="'mask': '+7 (999) 999-99-99', 'showMaskOnHover': false"
+          >
+          <button type="submit" class="contact-popup__submit">Заказать звонок</button>
+          <p class="contact-popup__policy">Нажимая кнопку, вы соглашаетесь с&nbsp;<a href="#">Политикой обработки персональных данных</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
