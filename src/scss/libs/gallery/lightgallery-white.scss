@@ -1,0 +1,30 @@
+// Белая тема lightGallery для проекта: переменные настраиваются до подключения ядра и плагинов
+// (модуль конфигурируется при первой загрузке, дальше ядро использует уже настроенный)
+@use 'lg-variables' with (
+  // Фон подложки галереи
+  $lg-theme-color: #fff,
+  // Акцентный цвет (полоса прогресса)
+  $lg-theme-highlight: #61c100,
+  // Фон кнопок «назад/вперёд»
+  $lg-icon-bg: #fff,
+  // Цвет иконок
+  $lg-icon-color: #676767,
+  // Цвет иконок при наведении
+  $lg-icon-hover-color: #292828,
+  // Цвет счётчика слайдов
+  $lg-counter-color: #676767,
+  // Фон верхней панели (используется как background-image)
+  $lg-toolbar-bg: linear-gradient(#fff, #fff),
+  // Фон подписи слайда (используется как background-image)
+  $lg-sub-html-bg: linear-gradient(#fff, #fff),
+  // Цвет текста подписи
+  $lg-sub-html-color: #292828,
+  // Фон полосы прогресса
+  $lg-progress-bar-bg: #e6e6e6,
+  // Фон ленты миниатюр и её переключателя
+  $lg-thumb-bg: #fff,
+  $lg-thumb-toggle-bg: #fff
+);
+
+@use 'lightgallery';
+@use 'lg-video';

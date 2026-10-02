@@ -109,3 +109,612 @@ img {
       left: -3.75rem
   }
 }
+
+// Брейкпоинт перехода на мобильную компоновку
+$bpMobile: mixins.toEm(variables.$mobile);
+
+//====================================================================================================
+// Заголовок секции: текст + линия до правого края (на мобильном без линии)
+//====================================================================================================
+.section-title {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  @include mixins.av("font-size", 28, 20);
+  @include mixins.av("gap", 48, 12);
+
+  &::after {
+    content: "";
+    flex: 1 1 auto;
+    height: mixins.toRem(1);
+    background-color: var(--icon-color);
+  }
+
+  @media (max-width: $bpMobile) {
+    line-height: mixins.toRem(28);
+    text-transform: none;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+//====================================================================================================
+// Шапка секции: заголовок, под ним ссылка справа (на мобильном слева)
+//====================================================================================================
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  @include mixins.av("gap", 16, 12);
+  @include mixins.av("margin-bottom", 30, 12);
+
+  .section-title {
+    align-self: stretch;
+  }
+
+  &__link {
+    @include mixins.av("margin-right", 58, 0);
+  }
+
+  @media (max-width: $bpMobile) {
+    align-items: flex-start;
+  }
+}
+
+//====================================================================================================
+// Зелёная подчёркнутая ссылка «Каталог», «Смотреть все»
+//====================================================================================================
+.link-more {
+  flex-shrink: 0;
+  color: var(--brand-color);
+  text-decoration: underline;
+  text-decoration-thickness: mixins.toRem(1);
+  text-underline-offset: mixins.toRem(3);
+  @include mixins.av("font-size", 18, 14);
+  @include mixins.av("line-height", 18, 20);
+  @include mixins.av("padding-bottom", 1, 0);
+
+  @media (any-hover: hover) {
+    &:hover {
+      text-decoration-color: transparent;
+    }
+  }
+
+  @media (max-width: $bpMobile) {
+    &::after {
+      content: "\00a0›";
+    }
+  }
+}
+
+//====================================================================================================
+// Пагинация слайдеров товаров (полоски)
+//====================================================================================================
+.slider-pagination {
+  display: flex;
+  gap: mixins.toRem(8);
+
+  // Специфичность выше, чем у базовых стилей Splide (они подключаются позже)
+  .splide & {
+    justify-content: center;
+
+    @media (max-width: $bpMobile) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__page {
+    display: block;
+    width: mixins.toRem(6);
+    height: mixins.toRem(4);
+    border-radius: mixins.toRem(2);
+    background-color: var(--text-muted-color);
+    cursor: pointer;
+    transition: width 0.3s, background-color 0.3s;
+
+    &.is-active {
+      width: mixins.toRem(18);
+      background-color: var(--brand-color);
+    }
+
+    &:focus-visible {
+      outline: mixins.toRem(2) solid var(--brand-color);
+      outline-offset: mixins.toRem(2);
+    }
+  }
+}
+
+//====================================================================================================
+// Карточка категории: квадратное фото + подпись (на мобильном фото вписано, подпись слева)
+//====================================================================================================
+.category-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: mixins.toRem(8);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+  color: var(--text-color);
+  @include mixins.av("border-radius", 10, 8);
+  @include mixins.av("gap", 15, 8);
+
+  @media (max-width: $bpMobile) {
+    box-shadow: none;
+  }
+
+  &__image-wrap {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: mixins.toRem(5);
+
+    @media (max-width: $bpMobile) {
+      aspect-ratio: 124 / 110.74;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.3s;
+
+    @media (any-hover: hover) {
+      .category-card:hover & {
+        scale: 1.1;
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      object-fit: contain;
+    }
+  }
+
+  &__name {
+    line-height: 1.05;
+    text-align: center;
+    @include mixins.av("font-size", 16, 14);
+
+    @media (max-width: $bpMobile) {
+      line-height: mixins.toRem(20);
+      text-align: left;
+    }
+  }
+}
+
+//====================================================================================================
+// Карточка товара (хиты продаж)
+//====================================================================================================
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+  @include mixins.av("border-radius", 10, 8);
+  @include mixins.av("padding-top", 20, 8);
+  @include mixins.av("padding-bottom", 20, 8);
+  @include mixins.av("padding-left", 10, 8);
+  @include mixins.av("padding-right", 10, 8);
+  @include mixins.av("gap", 25, 8);
+
+  @media (max-width: $bpMobile) {
+    box-shadow: none;
+  }
+
+  &__media {
+    display: flex;
+    flex-direction: column;
+    gap: mixins.toRem(13);
+  }
+
+  &__gallery {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mixins.av("height", 192, 174);
+  }
+
+  &__image {
+    display: none;
+    width: auto;
+    object-fit: contain;
+    @include mixins.av("height", 192, 170);
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  // Полоски-индикаторы фото (переключаются наведением)
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: mixins.toRem(4);
+    // В макете линии нулевой высоты: толщина не влияет на поток
+    margin: mixins.toRem(-1.5) 0;
+
+    @media (max-width: $bpMobile) {
+      display: none;
+    }
+  }
+
+  &__dot {
+    flex: 0 1 mixins.toRem(28);
+    height: mixins.toRem(3);
+    background-color: var(--line-color);
+    transition: background-color 0.2s;
+
+    &.is-active {
+      background-color: var(--brand-color);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    // Занимает остаток высоты карточки, чтобы кнопки можно было прижать к низу
+    flex-grow: 1;
+    @include mixins.av("gap", 18, 8);
+    @include mixins.av("padding-left", 6, 0);
+    @include mixins.av("padding-right", 6, 0);
+  }
+
+  // Цены: в строку на десктопе, на мобильном цена уходит под скидку
+  &__prices {
+    display: grid;
+    grid-template-areas: "badge price old";
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    justify-items: start;
+    line-height: 1.05;
+
+    @media (max-width: $bpMobile) {
+      grid-template-areas:
+        "badge old"
+        "price price";
+      grid-template-columns: auto 1fr;
+      row-gap: mixins.toRem(8);
+    }
+  }
+
+  &__badge {
+    grid-area: badge;
+    border-radius: mixins.toRem(21);
+    background: var(--sale-gradient);
+    color: var(--text-light-color);
+    font-size: mixins.toRem(11);
+    font-weight: 600;
+    @include mixins.av("padding-top", 7, 3);
+    @include mixins.av("padding-bottom", 7, 3);
+    @include mixins.av("padding-left", 9, 6);
+    @include mixins.av("padding-right", 9, 6);
+
+    @media (max-width: $bpMobile) {
+      font-weight: 700;
+      line-height: mixins.toRem(16);
+    }
+  }
+
+  &__price {
+    grid-area: price;
+    color: var(--text-price-color);
+    font-weight: 700;
+    white-space: nowrap;
+    @include mixins.av("font-size", 19, 18);
+    @include mixins.av("margin-left", 13, 0);
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      line-height: mixins.toRem(26);
+    }
+  }
+
+  &__old-price {
+    grid-area: old;
+    color: var(--text-old-price-color);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    @include mixins.av("font-size", 13, 12);
+    @include mixins.av("margin-left", 10, 8);
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-muted-color);
+      font-weight: 400;
+      line-height: mixins.toRem(17);
+      text-decoration: line-through;
+    }
+  }
+
+  // Знак рубля мельче цены на десктопе
+  &__currency {
+    font-size: 0.84em;
+    font-weight: 600;
+
+    .product-card__old-price & {
+      font-weight: 400;
+    }
+
+    @media (max-width: $bpMobile) {
+      font-size: 1em;
+      font-weight: inherit;
+    }
+  }
+
+  &__name {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    color: var(--text-color);
+    line-height: 1.05;
+    @include mixins.av("font-size", 16, 14);
+
+    // Вся карточка кликабельна
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    @media (max-width: $bpMobile) {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      line-height: mixins.toRem(20);
+    }
+  }
+
+  // Кнопка «В избранное»: иконка в углу на десктопе, белый круг на мобильном
+  &__fav {
+    position: absolute;
+    z-index: 2;
+    top: mixins.toRem(10);
+    right: mixins.toRem(10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: mixins.toRem(20);
+    height: mixins.toRem(17);
+    color: var(--icon-color);
+    cursor: pointer;
+    transition: color 0.2s;
+
+    svg {
+      flex-shrink: 0;
+      width: mixins.toRem(20);
+      height: mixins.toRem(17);
+    }
+
+    // Расширяем зону нажатия на десктопе
+    &::before {
+      content: "";
+      position: absolute;
+      inset: mixins.toRem(-8);
+    }
+
+    &[aria-pressed="true"] {
+      color: var(--sale-badge-color);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      top: mixins.toRem(8);
+      right: mixins.toRem(8);
+      width: mixins.toRem(44);
+      height: mixins.toRem(44);
+      border-radius: 50%;
+      background-color: var(--surface-color);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  // Флажки «На складе», «Хит» и т.п. Цвет задаётся инлайн: style="--flag-color: #fb6d3f"
+  // На мобильном — цветной текст под названием, на десктопе — плашки поверх фото
+  &__flags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: mixins.toRem(8);
+
+    @media (max-width: $bpMobile) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__flag {
+    color: var(--flag-color, var(--brand-color));
+    font-size: mixins.toRem(12);
+    line-height: mixins.toRem(17);
+  }
+
+  // Кнопки прижаты к низу: в карточках одного ряда стоят на одной линии
+  &__actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: mixins.toRem(8);
+    margin-top: auto;
+  }
+
+  &__cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: mixins.toRem(44);
+    background-color: var(--brand-color);
+    color: var(--text-light-color);
+    font-weight: 700;
+    line-height: mixins.toRem(20);
+    cursor: pointer;
+    font-size: mixins.toRem(14);
+    transition: background-color 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--brand-dark-color);
+      }
+    }
+  }
+
+  &__one-click {
+    align-self: flex-start;
+    color: var(--brand-color);
+    font-size: mixins.toRem(13);
+    line-height: mixins.toRem(19);
+    text-decoration: underline;
+    cursor: pointer;
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration-color: transparent;
+      }
+    }
+  }
+}
+
+// Брейкпоинт начала десктопной компоновки
+$bpDesktop: mixins.toEm(variables.$mobile + 0.02);
+
+//====================================================================================================
+// Карточка новинки на десктопе: всё по центру, скидка и «На складе» поверх фото
+// (мобильная версия общая с базовой карточкой)
+//====================================================================================================
+@media (min-width: $bpDesktop) {
+  .product-card--new {
+    border-radius: 0;
+    padding: mixins.toRem(20);
+    gap: mixins.toRem(13);
+
+    // Колонка текста и кнопок уже карточки: 107 из 132 в макете
+    .product-card__info {
+      gap: mixins.toRem(10);
+      padding: 0 mixins.toRem(12.5);
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .product-card__name {
+      order: 1;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      font-size: mixins.toRem(13);
+    }
+
+    .product-card__prices {
+      order: 2;
+      grid-template-areas:
+        "old"
+        "price";
+      grid-template-columns: auto;
+      justify-items: center;
+      row-gap: mixins.toRem(4);
+    }
+
+    .product-card__price {
+      margin-left: 0;
+      font-size: mixins.toRem(16);
+      font-weight: 600;
+    }
+
+    .product-card__old-price {
+      margin-left: 0;
+      color: var(--sale-price-color);
+      font-size: mixins.toRem(16);
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+
+    .product-card__currency {
+      font-size: 1em;
+      font-weight: inherit;
+    }
+
+    // Круглый бейдж скидки в правом нижнем углу фото
+    .product-card__badge {
+      position: absolute;
+      top: mixins.toRem(135);
+      right: mixins.toRem(7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: mixins.toRem(45);
+      height: mixins.toRem(45);
+      padding: 0;
+      border-radius: 50%;
+      background: var(--sale-badge-color);
+      font-size: mixins.toRem(15);
+      font-weight: 700;
+    }
+
+    // Колонка плашек у правого края фото
+    .product-card__flags {
+      position: absolute;
+      top: mixins.toRem(47);
+      right: 0;
+      align-items: flex-end;
+    }
+
+    .product-card__flag {
+      padding: mixins.toRem(5) mixins.toRem(8);
+      background-color: var(--flag-color, var(--flag-bg-color));
+      color: var(--text-light-color);
+      font-size: mixins.toRem(11);
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    .product-card__actions {
+      order: 3;
+      gap: mixins.toRem(6);
+    }
+
+    .product-card__cart {
+      height: auto;
+      padding: mixins.toRem(7) mixins.toRem(14) mixins.toRem(8);
+      border-radius: mixins.toRem(3);
+      font-weight: 400;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .product-card__one-click {
+      align-self: center;
+      font-size: mixins.toRem(14);
+      line-height: 1.05;
+    }
+
+    .product-card__fav {
+      top: mixins.toRem(20);
+      right: mixins.toRem(6.4);
+      width: mixins.toRem(15.6);
+      height: mixins.toRem(13);
+
+      svg {
+        width: mixins.toRem(15.6);
+        height: mixins.toRem(13);
+      }
+    }
+  }
+}

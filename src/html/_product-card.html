@@ -1,0 +1,31 @@
+<article class="product-card">
+  <div class="product-card__media">
+    <div class="product-card__gallery" data-card-gallery>
+      <img class="product-card__image is-active" src="{{ img }}" alt="{{ name }}" width="87" height="192" loading="lazy">
+      <img class="product-card__image" src="{{ img }}" alt="" width="87" height="192" loading="lazy">
+      <img class="product-card__image" src="{{ img }}" alt="" width="87" height="192" loading="lazy">
+      <img class="product-card__image" src="{{ img }}" alt="" width="87" height="192" loading="lazy">
+      <img class="product-card__image" src="{{ img }}" alt="" width="87" height="192" loading="lazy">
+      <img class="product-card__image" src="{{ img }}" alt="" width="87" height="192" loading="lazy">
+    </div>
+    <div class="product-card__dots" aria-hidden="true">
+      <span class="product-card__dot is-active"></span>
+      <span class="product-card__dot"></span>
+      <span class="product-card__dot"></span>
+      <span class="product-card__dot"></span>
+      <span class="product-card__dot"></span>
+      <span class="product-card__dot"></span>
+    </div>
+  </div>
+  <div class="product-card__info">
+    <div class="product-card__prices">
+      <span class="product-card__badge">{{ discount }}</span>
+      <span class="product-card__price">{{ price }}&nbsp;<span class="product-card__currency">₽</span></span>
+      <s class="product-card__old-price">{{ oldPrice }}&nbsp;<span class="product-card__currency">₽</span></s>
+    </div>
+    <a class="product-card__name" href="{{ href }}">{{ name }}</a>
+  </div>
+  <button class="product-card__fav" type="button" aria-pressed="false" aria-label="Добавить в избранное">
+    <svg viewBox="0 0 20 17" aria-hidden="true"><path fill="currentColor" d="M14.6067 0C12.3371 0 10.7865 1.12568 10 1.90676C9.21348 1.12568 7.66292 0 5.39326 0C2.24719 0 0 2.71081 0 5.95C0 7.81081 0.786517 9.76351 2.29213 11.5554C3.93258 13.5311 6.40449 15.323 9.64045 16.9311C9.75281 16.977 9.86517 17 9.97753 17C10.0899 17 10.2022 16.977 10.3146 16.9311C13.5506 15.323 16.0225 13.5311 17.6629 11.5554C19.2135 9.76351 20 7.81081 20 5.95C20 2.71081 17.7528 0 14.6067 0ZM16.5169 10.5216C15.0787 12.2446 12.8764 13.8757 10 15.323C7.1236 13.8527 4.94382 12.2446 3.48315 10.5216C2.20225 9.00541 1.57303 7.46622 1.57303 5.95C1.57303 3.60676 3.10112 1.60811 5.39326 1.60811C6.47191 1.60811 7.46067 1.92973 8.33708 2.57297C8.98876 3.05541 9.34832 3.53784 9.37079 3.58378C9.50562 3.81351 9.75281 3.92838 10.0225 3.92838C10.2697 3.92838 10.5169 3.79054 10.6742 3.58378C10.6517 3.53784 12 1.60811 14.6067 1.60811C16.8989 1.60811 18.427 3.62973 18.427 5.95C18.427 7.46622 17.7978 9.00541 16.5169 10.5216Z"/></svg>
+  </button>
+</article>

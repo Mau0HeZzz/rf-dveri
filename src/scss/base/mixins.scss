@@ -149,6 +149,13 @@
   }
 }
 
+/**
+ * Задаёт свойство, плавно меняющееся от десктопного макета (1920) к мобильному (320)
+ */
+@mixin av($property, $startSize, $minSize) {
+	@include adaptiveValue($property, $startSize, $minSize, variables.$maxWidth, variables.$mobileDesign);
+}
+
 @mixin adaptiveValueContainer($property, $startSize, $minSize, $widthFrom: 1920, $widthTo: 360, $keepSize: 0, $isContainer: 0) {
 	@if ($startSize==0) {
 		$startSize: 0.000001;
