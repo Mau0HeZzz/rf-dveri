@@ -1,3 +1,437 @@
-//====================================================================================================
+@use "base/mixins" as *;
+@use "variables";
+
+// Брейкпоинт перехода на мобильную компоновку
+$bpMobile: toEm(variables.$mobile);
+// Брейкпоинт, ниже которого меню уходит отдельной строкой под контакты и магазины
+$bpFooterTablet: toEm(variables.$pc);
 
 //====================================================================================================
+// Подвал: контакты, меню, адреса магазинов; внизу копирайт
+// Порядок в разметке — мобильный, на десктопе колонки собираются через grid-template-areas
+//====================================================================================================
+.footer {
+  // В макете у текстов подвала межстрочный «auto» (normal)
+  line-height: normal;
+  @include av("padding-bottom", 32, 24);
+
+  &__body {
+    display: grid;
+    grid-template-columns: toRem(201) minmax(0, 1fr) toRem(363);
+    grid-template-areas:
+      "contacts menu shops"
+      "extras   menu shops";
+    grid-template-rows: auto 1fr;
+    column-gap: toRem(93);
+    row-gap: toRem(34);
+    padding: toRem(59) 0 toRem(33);
+    border-top: toRem(1) solid var(--line-footer-color);
+
+    @media (max-width: $bpFooterTablet) {
+      grid-template-columns: toRem(201) minmax(0, 1fr);
+      grid-template-areas:
+        "contacts shops"
+        "extras   shops"
+        "menu     menu";
+      column-gap: toRem(60);
+    }
+
+    @media (max-width: $bpMobile) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "contacts"
+        "shops"
+        "menu"
+        "extras";
+      grid-template-rows: none;
+      row-gap: toRem(20);
+      padding: toRem(20) 0 0;
+      border-top-color: var(--brand-color);
+    }
+  }
+
+  // Подписи: «Телефоны:», «Оценить магазин», «Принимаем к оплате»
+  &__label {
+    color: var(--icon-color);
+    font-size: toRem(12);
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      font-size: toRem(14);
+      font-weight: 700;
+      line-height: toRem(20);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Контакты
+  //--------------------------------------------------------------------------------------------------
+  &__contacts {
+    grid-area: contacts;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .footer__label {
+      margin-bottom: toRem(10);
+      font-size: toRem(14);
+
+      @media (max-width: $bpMobile) {
+        margin-bottom: toRem(8);
+      }
+    }
+  }
+
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: toRem(17);
+    color: var(--text-black-color);
+    font-size: toRem(20);
+    font-weight: 700;
+
+    a {
+      transition: color 0.2s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: var(--brand-color);
+        }
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      margin-bottom: toRem(8);
+      color: var(--text-color);
+      line-height: toRem(28);
+    }
+  }
+
+  // В макете текст шире колонки (252 при колонке 201) и заходит в промежуток до меню
+  &__hours {
+    width: toRem(252);
+    margin-bottom: toRem(32);
+    color: var(--icon-color);
+    font-size: toRem(14);
+
+    @media (max-width: $bpMobile) {
+      width: auto;
+      margin-bottom: toRem(8);
+      color: var(--text-color);
+      line-height: toRem(20);
+    }
+  }
+
+  &__callback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: toRem(33);
+    border-radius: toRem(5);
+    background-color: var(--sale-price-color);
+    color: var(--text-light-color);
+    font-size: toRem(12);
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        filter: brightness(0.92);
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      height: toRem(44);
+      border-radius: toRem(999);
+      background-color: var(--brand-color);
+      font-size: toRem(14);
+      font-weight: 700;
+      line-height: toRem(20);
+      text-transform: none;
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Адреса магазинов
+  //--------------------------------------------------------------------------------------------------
+  &__shops {
+    grid-area: shops;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(30);
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(16);
+    }
+  }
+
+  &__shop {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(13);
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(8);
+    }
+  }
+
+  &__shop-name {
+    color: var(--text-black-color);
+    font-size: toRem(14);
+    font-weight: 700;
+    text-transform: uppercase;
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      line-height: toRem(20);
+      text-transform: none;
+    }
+  }
+
+  // Адрес с булавкой слева (зелёная у первого магазина, оранжевая у остальных)
+  &__shop-address {
+    position: relative;
+    padding-left: toRem(27);
+    color: var(--icon-color);
+    font-size: toRem(14);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: toRem(17);
+      height: toRem(21);
+      background-color: var(--brand-color);
+      mask: url("../img/footer/pin.svg") center / contain no-repeat;
+    }
+
+    .footer__shop--accent &::before {
+      background-color: var(--sale-price-color);
+    }
+
+    @media (max-width: $bpMobile) {
+      padding-left: 0;
+      color: var(--text-color);
+      line-height: toRem(20);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Меню: 6 групп ссылок (3×2 на десктопе, 2 колонки на мобильном)
+  //--------------------------------------------------------------------------------------------------
+  &__menu {
+    grid-area: menu;
+    display: grid;
+    grid-template-columns: toRem(236.5) toRem(228) auto;
+    grid-template-areas:
+      "about factories coatings"
+      "purpose nav service";
+    align-content: start;
+    row-gap: toRem(46.6);
+
+    @media (max-width: $bpFooterTablet) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: $bpMobile) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        "about coatings"
+        "service factories"
+        "purpose nav";
+      column-gap: toRem(12);
+      row-gap: toRem(20);
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    // Место под зелёные стрелки слева от ссылок
+    padding-left: toRem(16.5);
+
+    &--about { grid-area: about; }
+    &--factories { grid-area: factories; }
+    &--coatings { grid-area: coatings; }
+    &--purpose { grid-area: purpose; }
+    &--nav { grid-area: nav; }
+    &--service { grid-area: service; }
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(8);
+      padding-left: 0;
+    }
+  }
+
+  &__group-title {
+    color: var(--text-black-color);
+    font-size: toRem(14);
+    font-weight: 700;
+
+    @media (max-width: $bpMobile) {
+      color: var(--text-color);
+      line-height: toRem(20);
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10.6);
+    color: var(--icon-color);
+    font-size: toRem(14);
+    line-height: 1.03;
+
+    li {
+      position: relative;
+
+      // Зелёная стрелка перед ссылкой
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: toRem(-16.5);
+        width: toRem(4);
+        height: toRem(6);
+        background: url("../img/footer/chevron.svg") center / contain no-repeat;
+        translate: 0 -50%;
+      }
+    }
+
+    a {
+      transition: color 0.2s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: var(--brand-color);
+        }
+      }
+    }
+
+    @media (max-width: $bpMobile) {
+      gap: toRem(8);
+      color: var(--text-color);
+      line-height: toRem(22);
+
+      li::before {
+        display: none;
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Соцсети, оценка на Яндекс Маркете, способы оплаты
+  //--------------------------------------------------------------------------------------------------
+  &__extras {
+    grid-area: extras;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: toRem(20);
+  }
+
+  &__socials {
+    display: flex;
+    gap: toRem(8);
+
+    @media (max-width: $bpMobile) {
+      order: 1;
+    }
+  }
+
+  &__social {
+    display: block;
+    transition: opacity 0.2s;
+
+    img {
+      display: block;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // Логотип и подпись: на десктопе подпись под логотипом, на мобильном — над ним
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    margin-top: toRem(13);
+
+    @media (max-width: $bpMobile) {
+      flex-direction: column-reverse;
+      gap: toRem(20);
+      margin-top: 0;
+    }
+  }
+
+  &__rating-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: toRem(201);
+    height: toRem(31.23);
+    background-color: var(--surface-color);
+
+    img {
+      width: toRem(192.19);
+    }
+  }
+
+  &__payment {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+    margin-top: toRem(-5);
+
+    @media (max-width: $bpMobile) {
+      order: 2;
+      gap: toRem(20);
+      margin-top: 0;
+    }
+  }
+
+  &__pay-list {
+    display: grid;
+    grid-template-columns: repeat(3, toRem(60));
+    gap: toRem(5);
+
+    img {
+      display: block;
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  // Копирайт
+  //--------------------------------------------------------------------------------------------------
+  &__copyright {
+    padding-top: toRem(15);
+    border-top: toRem(1) solid var(--line-footer-color);
+    color: var(--icon-color);
+    font-size: toRem(14);
+    line-height: 1.3;
+    text-align: center;
+
+    @media (max-width: $bpMobile) {
+      margin-top: toRem(20);
+      padding-top: 0;
+      border-top: 0;
+      color: var(--text-muted-color);
+      font-size: toRem(12);
+      line-height: toRem(17);
+      text-align: left;
+    }
+  }
+}
