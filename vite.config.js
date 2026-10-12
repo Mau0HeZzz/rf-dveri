@@ -72,6 +72,13 @@ export default defineConfig({
     port: 3000,
     host: '0.0.0.0',
     hmr: true,
+    // API боевого сайта (подсказки поиска) — в разработке запросы уходят на прод без CORS
+    proxy: {
+      '/udata': {
+        target: 'https://www.rf-dveri.ru',
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     htmlPartialsHmr(),

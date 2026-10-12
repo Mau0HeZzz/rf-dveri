@@ -16,7 +16,7 @@ $collapse: 0.3s;
 //====================================================================================================
 // Отступ под фиксированную шапку: высоту считает setBodyHeightsVars, до её расчёта — высота по макету
 .wrapper {
-  padding-top: var(--headerHeight, #{toRem(210)});
+  padding-top: var(--headerHeight, #{toRem(200)});
 
   @media (max-width: $bpHeader) {
     padding-top: var(--headerHeight, #{toRem(124)});
@@ -46,12 +46,10 @@ $collapse: 0.3s;
   &__top {
     display: grid;
     grid-template-rows: 1fr;
-    border-bottom: toRem(1) solid var(--brand-color);
-    transition: grid-template-rows $collapse, opacity $collapse, visibility $collapse, border-bottom-width $collapse;
+    transition: grid-template-rows $collapse, opacity $collapse, visibility $collapse;
 
     ._header-fixed & {
       grid-template-rows: 0fr;
-      border-bottom-width: 0;
       opacity: 0;
       visibility: hidden;
     }
@@ -66,11 +64,15 @@ $collapse: 0.3s;
     justify-content: space-between;
     align-items: center;
     gap: toRem(28);
-    min-height: toRem(55);
-    transition: min-height $collapse;
+    // 55 + линия 1
+    min-height: toRem(56);
+    // Линия под телефонами — шириной в контейнер
+    border-bottom: toRem(1) solid var(--brand-color);
+    transition: min-height $collapse, border-bottom-width $collapse;
 
     ._header-fixed & {
       min-height: 0;
+      border-bottom-width: 0;
       overflow: hidden;
     }
   }
@@ -108,8 +110,8 @@ $collapse: 0.3s;
 
     img {
       display: block;
-      width: toRem(21);
-      height: toRem(21);
+      width: toRem(24);
+      height: toRem(24);
     }
 
     @media (any-hover: hover) {
@@ -151,8 +153,8 @@ $collapse: 0.3s;
 
     &--dropdown::after {
       content: "";
-      width: toRem(12);
-      height: toRem(12);
+      width: toRem(24);
+      height: toRem(24);
       background: url("../img/header/dropdown-arrow.svg") center / contain no-repeat;
       transition: rotate 0.2s;
     }
@@ -163,8 +165,11 @@ $collapse: 0.3s;
       }
     }
 
+    // Открытый пункт — тёмно-зелёный, стрелка вверх
     .header__service-item:hover &,
     .header__service-item:focus-within & {
+      color: var(--brand-dark-color);
+
       &::after {
         rotate: 180deg;
       }
@@ -204,7 +209,7 @@ $collapse: 0.3s;
 
   &__dropdown-link {
     display: block;
-    padding: toRem(14) toRem(24);
+    padding: toRem(8) toRem(24);
     color: var(--text-menu-color);
     font-size: toRem(16);
     line-height: toRem(24);
@@ -288,7 +293,7 @@ $collapse: 0.3s;
 
     img {
       display: block;
-      width: toRem(236);
+      width: toRem(202.5);
       height: auto;
     }
 
@@ -307,12 +312,12 @@ $collapse: 0.3s;
     gap: toRem(12);
     flex-shrink: 0;
     width: toRem(180);
-    height: toRem(52);
-    margin-left: toRem(20);
+    height: toRem(40);
+    margin-left: toRem(53.5);
     border-radius: toRem(999);
     background-color: var(--brand-color);
     color: var(--text-light-color);
-    font-size: toRem(22);
+    font-size: toRem(20);
     font-weight: 600;
     cursor: pointer;
     transition: filter 0.2s;
@@ -383,12 +388,13 @@ $collapse: 0.3s;
     position: relative;
     flex: 1 1 auto;
     min-width: 0;
-    @include av("margin-left", 48, 0);
-    @include av("margin-right", 48, 0);
+    max-width: toRem(580);
+    margin: 0 toRem(35);
 
     @media (max-width: $bpHeader) {
       flex-basis: 100%;
       order: 1;
+      max-width: none;
       height: toRem(44);
       margin: toRem(16) 0 0;
       transition: height $collapse, margin-top $collapse, opacity $collapse, visibility $collapse;
@@ -405,7 +411,7 @@ $collapse: 0.3s;
 
   &__search-input {
     width: 100%;
-    height: toRem(52);
+    height: toRem(40);
     padding: 0 toRem(56) 0 toRem(24);
     border: toRem(1) solid var(--text-gray-color);
     border-radius: toRem(999);
@@ -418,9 +424,11 @@ $collapse: 0.3s;
       color: var(--text-gray-color);
     }
 
+    // В фокусе рамка 2px (вторая — тенью, чтобы текст не сдвигался)
     &:focus {
       border-color: var(--brand-color);
       outline: none;
+      box-shadow: inset 0 0 0 toRem(1) var(--brand-color);
     }
 
     // Убираем встроенный крестик очистки
@@ -442,7 +450,7 @@ $collapse: 0.3s;
     right: toRem(12);
     width: toRem(40);
     height: toRem(40);
-    background: url("../img/header/search.svg") center / toRem(15) no-repeat;
+    background: url("../img/header/search.svg") center / toRem(20) no-repeat;
     translate: 0 -50%;
     cursor: pointer;
 
@@ -457,6 +465,7 @@ $collapse: 0.3s;
     align-items: center;
     gap: toRem(5);
     flex-shrink: 0;
+    margin-left: auto;
 
     @media (max-width: $bpHeader) {
       gap: toRem(8);
@@ -530,8 +539,8 @@ $collapse: 0.3s;
 
   &__action-icon {
     display: block;
-    width: auto;
-    height: toRem(28);
+    width: toRem(24);
+    height: toRem(24);
 
     @media (max-width: $bpHeader) {
       width: toRem(44);
@@ -542,8 +551,8 @@ $collapse: 0.3s;
   &__action-label {
     @media (max-width: $bpHeader) {
       position: absolute;
-      width: 1px;
-      height: 1px;
+      width: toRem(1);
+      height: toRem(1);
       overflow: hidden;
       clip-path: inset(50%);
     }
@@ -553,20 +562,21 @@ $collapse: 0.3s;
   // Нижняя строка: разделы каталога
   //--------------------------------------------------------------------------------------------------
   &__nav {
-    background-color: var(--surface-color);
-    box-shadow: var(--shadow-card);
-
     @media (max-width: $bpHeader) {
       display: none;
     }
   }
 
+  // Белая карточка шириной в контейнер
   &__nav-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: toRem(20);
-    min-height: toRem(50);
+    min-height: toRem(40);
+    padding: 0 toRem(15);
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-card);
   }
 
   &__nav-link {
@@ -574,8 +584,8 @@ $collapse: 0.3s;
     align-items: center;
     gap: toRem(8);
     color: var(--text-color);
-    font-size: toRem(16);
-    line-height: toRem(22);
+    font-size: toRem(14);
+    line-height: toRem(19);
     text-transform: uppercase;
     white-space: nowrap;
     transition: color 0.2s;
@@ -610,8 +620,7 @@ $collapse: 0.3s;
   max-height: calc(100dvh - toRem(160));
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: toRem(44) 0 toRem(60);
-  border-top: toRem(1) solid var(--brand-color);
+  padding-bottom: toRem(60);
   background-color: var(--bg-page-color);
   opacity: 0;
   visibility: hidden;
@@ -631,46 +640,35 @@ $collapse: 0.3s;
     display: none;
   }
 
+  // Зелёная линия под шапкой — шириной в контейнер
   &__container {
     position: relative;
-    display: grid;
-    grid-template-columns: toRem(325) minmax(0, 1fr) toRem(364);
-    align-items: start;
-
-    @media (max-width: $bpCatalogNarrow) {
-      grid-template-columns: toRem(325) minmax(0, 1fr) toRem(280);
-    }
+    // 20 по макету минус линия
+    padding-top: toRem(19);
+    border-top: toRem(1) solid var(--brand-color);
   }
 
   //--------------------------------------------------------------------------------------------------
   // Разделы (левая колонка)
   //--------------------------------------------------------------------------------------------------
   &__sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: toRem(10);
-    margin-left: toRem(12);
-    padding: toRem(20) toRem(15);
+    width: toRem(270);
+    padding: toRem(12) toRem(20) toRem(25);
+    border-radius: toRem(6);
     background-color: var(--surface-color);
     box-shadow: var(--shadow-card);
-  }
-
-  &__sections {
-    display: flex;
-    flex-direction: column;
-    gap: toRem(10);
   }
 
   &__section-link {
     display: flex;
     align-items: center;
-    gap: toRem(10);
-    // Нижний отступ на 1px меньше: в макете линия входит в высоту 42
-    padding: toRem(10) toRem(10) toRem(9);
+    gap: toRem(8);
+    // Нижний отступ на 1px меньше: в макете линия входит в высоту 44
+    padding: toRem(11) 0 toRem(10);
     border-bottom: toRem(1) solid var(--line-color);
-    border-radius: toRem(5);
     color: var(--text-color);
-    font-size: toRem(16);
+    font-size: toRem(14);
+    font-weight: 600;
     line-height: toRem(22);
     text-transform: uppercase;
     transition: background-color 0.2s;
@@ -698,7 +696,6 @@ $collapse: 0.3s;
     }
 
     .catalog-menu__section--group-end & {
-      padding-bottom: toRem(19);
       border-bottom-color: var(--icon-color);
     }
   }
@@ -709,22 +706,16 @@ $collapse: 0.3s;
     height: toRem(22);
   }
 
-  &__actions {
-    display: flex;
-    flex-direction: column;
-    gap: toRem(10);
-  }
-
   // «Вызвать замерщика», «Заказать звонок»
   &__action {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: toRem(10);
+    gap: toRem(8);
     width: 100%;
-    padding: toRem(10);
+    padding: toRem(11) 0;
     color: var(--action-color);
-    font-size: toRem(16);
+    font-size: toRem(14);
     line-height: toRem(22);
     cursor: pointer;
     transition: opacity 0.2s;
@@ -742,14 +733,16 @@ $collapse: 0.3s;
   }
 
   //--------------------------------------------------------------------------------------------------
-  // Каскад подкатегорий: у каждого уровня — своя колонка, вложенный список встаёт справа от родителя
+  // Каскад подкатегорий: каждый уровень — карточка-колонка, вложенный список встаёт справа от родителя
   //--------------------------------------------------------------------------------------------------
+  // Справа от разделов (270 + 16) до слайдера баннеров; три колонки по 233 максимум
   &__panel {
     position: absolute;
-    top: toRem(30);
-    @include av("left", 384, 350);
-    @include av("right", 492, 300);
+    top: toRem(20);
+    right: calc(toRem(347.5) + toRem(40));
+    left: toRem(286);
     display: none;
+    max-width: toRem(732);
 
     @media (max-width: $bpCatalogNarrow) {
       right: calc(toRem(280) + toRem(40));
@@ -765,19 +758,72 @@ $collapse: 0.3s;
     display: flex;
     flex-direction: column;
     gap: toRem(10);
-    width: calc((100% - toRem(60)) / 3);
+    width: calc((100% - toRem(32)) / 3);
+    padding: toRem(20);
+    border-radius: toRem(6);
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-card);
 
     // Вложенный уровень
     & & {
       position: absolute;
       top: 0;
-      left: calc(100% + toRem(30));
+      left: calc(100% + toRem(16));
       display: none;
       width: 100%;
     }
 
     .catalog-menu__item.is-active > & {
       display: flex;
+    }
+
+    // Группы (у «Производителей»): каждая — отдельная колонка с зелёным заголовком, без каскада
+    &--groups {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: toRem(16);
+      width: 100%;
+      padding: 0;
+      border-radius: 0;
+      background-color: transparent;
+      box-shadow: none;
+
+      > .catalog-menu__item {
+        display: flex;
+        flex-direction: column;
+        gap: toRem(10);
+        width: calc((100% - toRem(32)) / 3);
+        padding: toRem(20);
+        border-radius: toRem(6);
+        background-color: var(--surface-color);
+        box-shadow: var(--shadow-card);
+
+        > .catalog-menu__link {
+          color: var(--brand-color);
+          font-weight: 700;
+        }
+
+        > .catalog-menu__list {
+          position: static;
+          display: flex;
+          width: auto;
+          padding: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+
+      // Внутри группы активный пункт не выделяем — выделен только заголовок
+      .catalog-menu__list .catalog-menu__item.is-active > .catalog-menu__link {
+        color: var(--text-secondary-color);
+        font-weight: 400;
+      }
+
+      @media (any-hover: hover) {
+        .catalog-menu__list .catalog-menu__link:hover {
+          color: var(--brand-color);
+        }
+      }
     }
   }
 
@@ -791,8 +837,8 @@ $collapse: 0.3s;
     line-height: toRem(22);
     transition: color 0.2s;
 
-    // Стрелка у пунктов с вложенным уровнем
-    .catalog-menu__item:has(> .catalog-menu__list) > &::after {
+    // Стрелка у пунктов с вложенным уровнем (у заголовков групп её нет)
+    .catalog-menu__list:not(.catalog-menu__list--groups) > .catalog-menu__item:has(> .catalog-menu__list) > &::after {
       content: "";
       flex-shrink: 0;
       width: toRem(4);
@@ -815,12 +861,13 @@ $collapse: 0.3s;
   //--------------------------------------------------------------------------------------------------
   // Вертикальный слайдер баннеров
   //--------------------------------------------------------------------------------------------------
-  // У каждого раздела свой слайдер, виден только у активного; стоит в правой колонке сетки
+  // У каждого раздела свой слайдер, виден только у активного; прижат к правому краю контейнера
   &__promo {
-    top: 0;
+    top: toRem(20);
     right: 0;
     display: none;
-    width: toRem(364);
+    width: toRem(347.5);
+
     // Splide ставит инициализированному слайдеру visibility: visible (.splide.is-initialized) —
     // возвращаем наследование, чтобы у закрытого меню слайдер не ловил клики и фокус
     &.splide.is-initialized,
@@ -1020,6 +1067,12 @@ $collapse: 0.3s;
     align-items: center;
     gap: toRem(10);
     min-height: toRem(52);
+
+    // В мобильном макете мессенджеры мельче, чем в шапке
+    .header__messenger img {
+      width: toRem(21);
+      height: toRem(21);
+    }
   }
 
   &__phones {
@@ -1108,5 +1161,97 @@ $collapse: 0.3s;
   &__list--catalog &__link {
     min-height: toRem(43);
     padding-block: toRem(10);
+  }
+}
+
+//====================================================================================================
+// Подсказки поиска: категории и популярные запросы под полем, внизу — «Показать все результаты»
+//====================================================================================================
+.search-hints {
+  position: absolute;
+  top: calc(100% + toRem(6));
+  right: toRem(20);
+  left: toRem(20);
+  z-index: 4;
+  padding: toRem(8) 0;
+  border: toRem(1) solid var(--line-soft-color);
+  border-radius: toRem(8);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-suggest);
+  overflow: hidden;
+
+  @media (max-width: $bpHeader) {
+    right: 0;
+    left: 0;
+  }
+
+  &__title {
+    padding: toRem(10) toRem(20) toRem(12);
+    color: var(--text-muted-color);
+    font-size: toRem(12);
+    font-weight: 600;
+    line-height: toRem(18);
+    text-transform: uppercase;
+  }
+
+  // Подсказка: лупа, текст и подпись под ним; выбранная (наведение или стрелки) — на сером фоне
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+    min-height: toRem(48);
+    // По макету текст в две строки (38) в строке 48
+    padding: toRem(5) toRem(20);
+    color: var(--text-color);
+    font-size: toRem(14);
+    line-height: toRem(20);
+
+    &::before {
+      content: "";
+      flex-shrink: 0;
+      width: toRem(20);
+      height: toRem(20);
+      background: url("../img/header/search.svg") center / contain no-repeat;
+    }
+
+    &.is-active {
+      background-color: var(--bg-subtle-color);
+      color: var(--brand-color);
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__note {
+    color: var(--text-muted-color);
+    font-size: toRem(12);
+    line-height: toRem(18);
+  }
+
+  &__all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(12);
+    margin-bottom: toRem(-8);
+    padding: toRem(14) toRem(20);
+    background-color: var(--bg-subtle-color);
+    color: var(--brand-color);
+    font-size: toRem(14);
+    font-weight: 600;
+    line-height: toRem(20);
+
+    &::after {
+      content: "→";
+      font-size: toRem(16);
+    }
+
+    &.is-active {
+      text-decoration: underline;
+    }
   }
 }

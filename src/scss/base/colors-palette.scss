@@ -35,6 +35,8 @@
   --bg-section-color: #e8e8e8;
   // Фон-заглушка под картинками (в новостях макет даёт #f2f2f2, разница незаметна)
   --bg-image-color: #f1f1f1;
+  // Подсветка выбранной подсказки поиска и строки «Показать все результаты» (Figma: product/subtle)
+  --bg-subtle-color: #f0f1f1;
   // Затемнение под мобильным меню и попапами
   --overlay-color: rgba(0, 0, 0, 0.58);
 
@@ -81,6 +83,8 @@
   --line-dark-color: #d7d7d7;
   // Светлые линии (Figma: «Линии»)
   --line-light-color: #e8e7ec;
+  // Рамка выпадающих подсказок поиска (Figma: product/border)
+  --line-soft-color: #e0e0e0;
   // Разделители в подвале
   --line-footer-color: #909090;
   // Обводка полей формы контактов (Figma: contact/border)
@@ -93,6 +97,8 @@
   --shadow-card: 0.0625rem 0.0625rem 0.9375rem rgba(0, 0, 0, 0.15);
   // Тень карточек новостей
   --shadow-news: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  // Тень подсказок поиска
+  --shadow-suggest: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.16);
   // Тень выпадающего меню
   --shadow-dropdown: 0 0.3125rem 1rem rgba(0, 0, 0, 0.14);
 }
