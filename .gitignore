@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 .design
+.design-prev
 .env
 # Архивы в корне проекта
 /*.zip
