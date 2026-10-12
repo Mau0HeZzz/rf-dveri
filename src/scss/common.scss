@@ -124,7 +124,7 @@ $bpMobile: mixins.toEm(variables.$mobile);
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  @include mixins.av("font-size", 28, 20);
+  @include mixins.av("font-size", 24, 20);
   @include mixins.av("gap", 48, 12);
 
   &::after {
@@ -165,6 +165,27 @@ $bpMobile: mixins.toEm(variables.$mobile);
   @media (max-width: $bpMobile) {
     align-items: flex-start;
   }
+
+  // Заголовок без линии и ссылка в одну строку справа («Отзывы», «Вопросы и ответы»)
+  &--row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: mixins.toRem(16);
+
+    .section-title {
+      align-self: auto;
+      line-height: mixins.toRem(28);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .section-head__link {
+      margin-right: 0;
+    }
+  }
 }
 
 //====================================================================================================
@@ -189,6 +210,30 @@ $bpMobile: mixins.toEm(variables.$mobile);
   @media (max-width: $bpMobile) {
     &::after {
       content: "\00a0›";
+    }
+  }
+
+  // Без подчёркивания, со стрелкой справа («Все отзывы →»)
+  &--arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: mixins.toRem(8);
+    text-decoration: none;
+    @include mixins.av("line-height", 24, 20);
+
+    &::after {
+      content: "";
+      flex-shrink: 0;
+      width: mixins.toRem(16);
+      height: mixins.toRem(16);
+      background: url("../img/home/arrow-right.svg") center / contain no-repeat;
+      transition: translate 0.2s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover::after {
+        translate: mixins.toRem(4) 0;
+      }
     }
   }
 }
@@ -231,35 +276,20 @@ $bpMobile: mixins.toEm(variables.$mobile);
 }
 
 //====================================================================================================
-// Карточка категории: квадратное фото + подпись (на мобильном фото вписано, подпись слева)
+// Карточка категории: фото на всю карточку, подпись по центру снизу на тёмном градиенте
 //====================================================================================================
 .category-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: mixins.toRem(8);
+  position: relative;
+  display: block;
+  aspect-ratio: 225 / 156;
+  overflow: hidden;
   background-color: var(--surface-color);
   box-shadow: var(--shadow-card);
-  color: var(--text-color);
   @include mixins.av("border-radius", 10, 8);
-  @include mixins.av("gap", 15, 8);
-
-  @media (max-width: $bpMobile) {
-    box-shadow: none;
-  }
-
-  &__image-wrap {
-    display: block;
-    aspect-ratio: 1;
-    overflow: hidden;
-    border-radius: mixins.toRem(5);
-
-    @media (max-width: $bpMobile) {
-      aspect-ratio: 124 / 110.74;
-    }
-  }
 
   &__image {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -271,21 +301,22 @@ $bpMobile: mixins.toEm(variables.$mobile);
         scale: 1.1;
       }
     }
-
-    @media (max-width: $bpMobile) {
-      object-fit: contain;
-    }
   }
 
   &__name {
-    line-height: 1.05;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    color: var(--text-light-color);
     text-align: center;
-    @include mixins.av("font-size", 16, 14);
-
-    @media (max-width: $bpMobile) {
-      line-height: mixins.toRem(20);
-      text-align: left;
-    }
+    @include mixins.av("padding-top", 24, 16);
+    @include mixins.av("padding-bottom", 12, 8);
+    @include mixins.av("padding-left", 8, 6);
+    @include mixins.av("padding-right", 8, 6);
+    @include mixins.av("font-size", 14, 12);
+    @include mixins.av("line-height", 19, 16);
   }
 }
 
@@ -598,28 +629,37 @@ $bpMobile: mixins.toEm(variables.$mobile);
 $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
 
 //====================================================================================================
-// Карточка новинки на десктопе: всё по центру, скидка и «На складе» поверх фото
-// (мобильная версия общая с базовой карточкой)
+// Карточка «стиль Новинки» на десктопе: всё по центру, скидка и флажки поверх фото
+// (мобильная версия общая с базовой карточкой). Размеры плавные: в ряду 6 карточек вплоть до 768
 //====================================================================================================
 @media (min-width: $bpDesktop) {
   .product-card--new {
     border-radius: 0;
-    padding: mixins.toRem(20);
-    gap: mixins.toRem(13);
+    @include mixins.av("padding", 20, 8);
+    @include mixins.av("gap", 13, 8);
 
-    // Колонка текста и кнопок уже карточки: 107 из 132 в макете
+    .product-card__gallery {
+      @include mixins.av("height", 192, 120);
+    }
+
+    .product-card__image {
+      @include mixins.av("height", 192, 120);
+    }
+
+    // Колонка текста и кнопок уже карточки: 107 из 185 в макете
     .product-card__info {
       gap: mixins.toRem(10);
-      padding: 0 mixins.toRem(12.5);
       align-items: stretch;
       text-align: center;
+      @include mixins.av("padding-left", 39, 0);
+      @include mixins.av("padding-right", 39, 0);
     }
 
     .product-card__name {
       order: 1;
       -webkit-line-clamp: 3;
       line-clamp: 3;
-      font-size: mixins.toRem(13);
+      @include mixins.av("font-size", 13, 11);
     }
 
     .product-card__prices {
@@ -634,16 +674,16 @@ $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
 
     .product-card__price {
       margin-left: 0;
-      font-size: mixins.toRem(16);
       font-weight: 600;
+      @include mixins.av("font-size", 16, 13);
     }
 
     .product-card__old-price {
       margin-left: 0;
       color: var(--sale-price-color);
-      font-size: mixins.toRem(16);
       font-weight: 400;
       text-decoration: line-through;
+      @include mixins.av("font-size", 16, 13);
     }
 
     .product-card__currency {
@@ -654,35 +694,50 @@ $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
     // Круглый бейдж скидки в правом нижнем углу фото
     .product-card__badge {
       position: absolute;
-      top: mixins.toRem(135);
-      right: mixins.toRem(7);
       display: flex;
       justify-content: center;
       align-items: center;
-      width: mixins.toRem(45);
-      height: mixins.toRem(45);
       padding: 0;
       border-radius: 50%;
       background: var(--sale-badge-color);
-      font-size: mixins.toRem(15);
       font-weight: 700;
+      @include mixins.av("top", 135, 90);
+      @include mixins.av("right", 7, 4);
+      @include mixins.av("width", 45, 30);
+      @include mixins.av("height", 45, 30);
+      @include mixins.av("font-size", 15, 10);
     }
 
-    // Колонка плашек у правого края фото
+    // Колонка флажков-лент: выступают за правый край карточки на 17, под концом — загнутый уголок
     .product-card__flags {
       position: absolute;
-      top: mixins.toRem(47);
-      right: 0;
       align-items: flex-end;
+      gap: mixins.toRem(12);
+      @include mixins.av("top", 57, 36);
+      @include mixins.av("right", -17, -10);
     }
 
     .product-card__flag {
-      padding: mixins.toRem(5) mixins.toRem(8);
+      position: relative;
+      padding: mixins.toRem(4) mixins.toRem(8);
       background-color: var(--flag-color, var(--flag-bg-color));
       color: var(--text-light-color);
-      font-size: mixins.toRem(11);
       font-weight: 600;
-      line-height: 1.05;
+      white-space: nowrap;
+      @include mixins.av("font-size", 11, 9);
+      @include mixins.av("line-height", 15, 12);
+
+      // Уголок темнее флажка; свой цвет можно задать через --flag-fold
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: mixins.toRem(-7);
+        width: mixins.toRem(10);
+        height: mixins.toRem(7);
+        background-color: var(--flag-fold, color-mix(in srgb, var(--flag-color, var(--flag-bg-color)) 78%, #000));
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
     }
 
     .product-card__actions {
@@ -692,11 +747,12 @@ $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
 
     .product-card__cart {
       height: auto;
-      padding: mixins.toRem(7) mixins.toRem(14) mixins.toRem(8);
+      padding: mixins.toRem(7) mixins.toRem(4) mixins.toRem(8);
       border-radius: mixins.toRem(3);
       font-weight: 400;
       line-height: 1.05;
       text-transform: uppercase;
+      @include mixins.av("font-size", 14, 11);
     }
 
     .product-card__one-click {
@@ -715,6 +771,64 @@ $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
         width: mixins.toRem(15.6);
         height: mixins.toRem(13);
       }
+    }
+  }
+
+  // Широкая карточка (входные двери): фото, текст и кнопка на всю ширину, без скидки
+  .product-card--wide {
+    .product-card__image {
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .product-card__info {
+      padding: 0;
+    }
+
+    .product-card__name {
+      line-height: 1.43;
+      @include mixins.av("font-size", 14, 11);
+    }
+
+    .product-card__prices {
+      // Отступы сверху и снизу цены по макету: название, цена и кнопка разнесены по высоте
+      @include mixins.av("margin-top", 3, 0);
+    }
+  }
+}
+
+//====================================================================================================
+// Ряды карточек товаров («Хиты продаж», «Распродажа»): на десктопе сетка по 6, на телефонах слайдер
+//====================================================================================================
+.product-rows {
+  display: flex;
+  flex-direction: column;
+  @include mixins.av("gap", 20, 24);
+
+  // Базовый .splide прячет слайдер до инициализации, а на десктопе Splide не монтируется
+  &__row.splide {
+    visibility: visible;
+  }
+
+  &__row {
+    // У уничтоженного Splide своё правило .splide.is-initialized:not(.is-active) .splide__list { display: block } —
+    // перебиваем его специфичностью
+    @media (min-width: $bpDesktop) {
+      // Ленты флажков выступают за правый край крайней карточки — трек их не обрезает
+      .splide__track {
+        overflow: visible;
+      }
+
+      .product-rows &.splide:not(.is-active) .splide__list {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        @include mixins.av("gap", 20, 12);
+      }
+    }
+
+    .slider-pagination {
+      margin-top: mixins.toRem(12);
     }
   }
 }
