@@ -10,49 +10,41 @@
             <div class="hero__slider splide" aria-label="Акции и распродажи">
               <div class="splide__track">
                 <ul class="splide__list">
-                  <!-- Баннер только из картинки: текст, если есть, — в самой картинке, поэтому описываем его в alt -->
+                  <!-- Баннер: фото на всю площадь (hero__cover) и подпись поверх; подпись необязательна -->
                   <li class="splide__slide">
                     <a href="#" class="hero__banner">
-                      <img class="hero__cover" src="/img/home/hero-photo.png" alt="Межкомнатные двери в интерьере" width="1916" height="1200">
+                      <img class="hero__cover" src="/img/home/hero-enamel.jpg" alt="" width="1774" height="440">
+                      <div class="hero__caption">
+                        <p class="hero__caption-title">Двери с покрытием эмали</p>
+                        <p class="hero__caption-text">Двери покрытые многослойной эмалью,<br>выполняем заказы по каталогу RAL и NCS</p>
+                      </div>
                     </a>
                   </li>
                   <li class="splide__slide">
                     <a href="#" class="hero__banner">
-                      <div class="hero__content">
-                        <p class="hero__date">10 января - 1 января</p>
-                        <p class="hero__title">Распродажа</p>
-                        <p class="hero__discount">
-                          <span class="hero__discount-label">Скидки</span>
-                          <span class="hero__discount-value"><span class="hero__discount-prefix">до</span> <span class="hero__discount-number">50</span><span class="hero__discount-suffix">%</span></span>
-                        </p>
+                      <img class="hero__cover" src="/img/home/hero-massiv.jpg" alt="" width="1774" height="440">
+                      <div class="hero__caption">
+                        <p class="hero__caption-title">Двери из массива</p>
+                        <p class="hero__caption-text">Межкомнатные двери из ценных пород дерева,<br>100% массив ольхи, бука, ясеня, дуба</p>
                       </div>
-                      <img class="hero__image" src="/img/home/hero-sale.png" alt="" width="732" height="385">
                     </a>
                   </li>
                   <li class="splide__slide">
                     <a href="#" class="hero__banner">
-                      <div class="hero__content">
-                        <p class="hero__date">10 января - 1 января</p>
-                        <p class="hero__title">Распродажа</p>
-                        <p class="hero__discount">
-                          <span class="hero__discount-label">Скидки</span>
-                          <span class="hero__discount-value"><span class="hero__discount-prefix">до</span> <span class="hero__discount-number">30</span><span class="hero__discount-suffix">%</span></span>
-                        </p>
+                      <img class="hero__cover" src="/img/home/hero-hidden.jpg" alt="" width="1774" height="440">
+                      <div class="hero__caption">
+                        <p class="hero__caption-title">Скрытые двери</p>
+                        <p class="hero__caption-text">Скрытые двери от производителя<br>высотой от 2000 мм до 3000 мм</p>
                       </div>
-                      <img class="hero__image" src="/img/home/hero-sale.png" alt="" width="732" height="385">
                     </a>
                   </li>
                   <li class="splide__slide">
                     <a href="#" class="hero__banner">
-                      <div class="hero__content">
-                        <p class="hero__date">10 января - 1 января</p>
-                        <p class="hero__title">Распродажа</p>
-                        <p class="hero__discount">
-                          <span class="hero__discount-label">Скидки</span>
-                          <span class="hero__discount-value"><span class="hero__discount-prefix">до</span> <span class="hero__discount-number">50</span><span class="hero__discount-suffix">%</span></span>
-                        </p>
+                      <img class="hero__cover" src="/img/home/hero-glass.jpg" alt="" width="1774" height="440">
+                      <div class="hero__caption">
+                        <p class="hero__caption-title">Стеклянные двери</p>
+                        <p class="hero__caption-text">Стеклянные двери от производителя по вашим размерам<br>в течение 5 рабочих дней</p>
                       </div>
-                      <img class="hero__image" src="/img/home/hero-sale.png" alt="" width="732" height="385">
                     </a>
                   </li>
                 </ul>
@@ -62,28 +54,32 @@
         </section>
         <section class="hits">
           <div class="hits__container">
-            <div class="hits__head">
+            <div class="section-head">
               <h2 class="section-title">Хиты продаж</h2>
             </div>
-            <div class="hits__body">
-              <div class="hits__top">
-                <a href="#" class="hits__link link-more" data-da=".hits__head,767.98,last">Каталог</a>
-              </div>
-              <div class="hits__slider splide" aria-label="Хиты продаж">
+            <!-- Ряды по 6 карточек; на телефонах каждый ряд — слайдер -->
+            <div class="product-rows">
+              <div class="product-rows__row splide" aria-label="Хиты продаж: межкомнатные двери">
                 <div class="splide__track">
                   <ul class="splide__list">
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "44 950", "oldPrice": "59 950", "discount": "-25%", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""},{"text":"Хит продаж","style":"--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="product-rows__row splide" aria-label="Хиты продаж: входные двери">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-01.jpg", "name": "Флагман М 2 Lana (Бетон графит/Синий)", "price": "57 950", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-02.jpg", "name": "Флагман М 2 (Бетон графит/Зеркало 1001 Maxi)", "price": "117 490", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-03.jpg", "name": "Флагман Домино Light 2125 (Бетон черный/Капучино велюр)", "price": "112 670", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-04.jpg", "name": "Флагман М 2 (Бетон графит/Зеркало 1002 Infinity)", "price": "117 490", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-05.jpg", "name": "Флагман (Дуб янтарный)", "price": "530 500", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-06.jpg", "name": "Флагман (Каштан)", "price": "530 500", "href": "#"}'></include></li>
                   </ul>
                 </div>
               </div>
@@ -94,7 +90,6 @@
           <div class="popular__container">
             <div class="popular__head section-head">
               <h2 class="section-title">Популярные</h2>
-              <a href="#" class="popular__link section-head__link link-more">Каталог</a>
             </div>
             <ul class="popular__grid">
               <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-01.png", "name": "Массив дерева", "href": "#"}'></include></li>
@@ -110,36 +105,6 @@
               <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-11.png", "name": "Влагостойкие", "href": "#"}'></include></li>
               <li><include src="src/html/_category-card.html" locals='{"img": "/img/home/popular-12.png", "name": "Эмаль", "href": "#"}'></include></li>
             </ul>
-          </div>
-        </section>
-        <section class="novelties">
-          <div class="novelties__container">
-            <div class="novelties__head section-head">
-              <h2 class="section-title">Новинки</h2>
-              <a href="#" class="novelties__link section-head__link link-more">Каталог</a>
-            </div>
-            <div class="novelties__slider splide" aria-label="Новинки">
-              <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}, {"text": "Хит", "style": "--flag-color: #FB6D3F"}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text": "На складе", "style": ""}], "href": "#"}'></include></li>
-                </ul>
-              </div>
-            </div>
           </div>
         </section>
         <section class="promos">
@@ -196,44 +161,14 @@
                   </li>
                   <li class="splide__slide">
                     <a href="#" class="promo-card">
-                      <span class="promo-card__badge">
-                        <span class="promo-card__badge-label">Скидки</span>
-                        <span class="promo-card__badge-prefix">до</span>
-                        <span class="promo-card__badge-number">50</span>
-                        <span class="promo-card__badge-suffix">%</span>
-                      </span>
-                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
-                      <span class="promo-card__text">
-                        <span class="promo-card__title">Успейте купить</span>
-                        <span class="promo-card__date">до 10.02</span>
-                      </span>
-                    </a>
-                  </li>
-                  <li class="splide__slide">
-                    <a href="#" class="promo-card">
-                      <span class="promo-card__badge">
-                        <span class="promo-card__badge-label">Скидки</span>
-                        <span class="promo-card__badge-prefix">до</span>
-                        <span class="promo-card__badge-number">30</span>
-                        <span class="promo-card__badge-suffix">%</span>
-                      </span>
-                      <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
-                      <span class="promo-card__text">
-                        <span class="promo-card__title">Акция недели</span>
-                        <span class="promo-card__date">до 10.02</span>
-                      </span>
-                    </a>
-                  </li>
-                  <li class="splide__slide">
-                    <a href="#" class="promo-card">
                       <span class="promo-card__badge promo-card__badge--bonus">
-                        <span class="promo-card__badge-line">Накопи</span>
-                        <span class="promo-card__badge-accent">бонусы</span>
+                        <span class="promo-card__badge-line">Акции</span>
+                        <span class="promo-card__badge-accent">на двери</span>
                       </span>
                       <img class="promo-card__image" src="/img/home/door-v1-pg.png" alt="" width="87" height="192" loading="lazy">
                       <span class="promo-card__text">
-                        <span class="promo-card__title">Аксессуары</span>
-                        <span class="promo-card__date">до 10.02</span>
+                        <span class="promo-card__title">Комплекты</span>
+                        <span class="promo-card__date">Спецпредложения</span>
                       </span>
                     </a>
                   </li>
@@ -242,35 +177,68 @@
             </div>
           </div>
         </section>
+        <section class="sale">
+          <div class="sale__container">
+            <div class="section-head">
+              <h2 class="section-title">Распродажа</h2>
+              <a href="#" class="section-head__link link-more">Каталог</a>
+            </div>
+            <div class="product-rows">
+              <div class="product-rows__row splide" aria-label="Распродажа: межкомнатные двери">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-new.html" locals='{"img": "/img/home/door-v1-pg.png", "name": "Межкомнатная дверь В-1 ПГ (Белая Эмаль)", "price": "4 950", "oldPrice": "5 250", "discount": "-25%", "flags": [{"text":"На складе","style":""}], "href": "#"}'></include></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="product-rows__row splide" aria-label="Распродажа: входные двери">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-01.jpg", "name": "Флагман М 2 Lana (Бетон графит/Синий)", "price": "57 950", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-02.jpg", "name": "Флагман М 2 (Бетон графит/Зеркало 1001 Maxi)", "price": "117 490", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-03.jpg", "name": "Флагман Домино Light 2125 (Бетон черный/Капучино велюр)", "price": "112 670", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-04.jpg", "name": "Флагман М 2 (Бетон графит/Зеркало 1002 Infinity)", "price": "117 490", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-05.jpg", "name": "Флагман (Дуб янтарный)", "price": "530 500", "href": "#"}'></include></li>
+                    <li class="splide__slide"><include src="src/html/_product-card-wide.html" locals='{"img": "/img/home/entrance-06.jpg", "name": "Флагман (Каштан)", "price": "530 500", "href": "#"}'></include></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="services">
           <div class="services__container">
-            <div class="services__head section-head">
+            <div class="section-head">
               <h2 class="section-title">Услуги</h2>
-              <a href="#" class="services__link section-head__link link-more">Смотреть все</a>
             </div>
             <ul class="services__grid">
               <li>
                 <a href="#" class="service-card">
                   <img class="service-card__icon" src="/img/home/service-measure.svg" alt="" width="91" height="90" loading="lazy">
-                  <span class="service-card__name">Замер помещения</span>
+                  <span class="service-card__name">Замер</span>
                 </a>
               </li>
               <li>
                 <a href="#" class="service-card">
-                  <img class="service-card__icon" src="/img/home/service-kitchen.svg" alt="" width="99" height="90" loading="lazy">
-                  <span class="service-card__name">Планирование кухни со&nbsp;специалистом</span>
+                  <img class="service-card__icon" src="/img/home/service-delivery.svg" alt="" width="99" height="90" loading="lazy">
+                  <span class="service-card__name">Доставка</span>
                 </a>
               </li>
               <li>
                 <a href="#" class="service-card">
-                  <img class="service-card__icon" src="/img/home/service-appliances.svg" alt="" width="85" height="90" loading="lazy">
-                  <span class="service-card__name">Сборка и&nbsp;подключение бытовой техники</span>
+                  <img class="service-card__icon" src="/img/home/service-install.svg" alt="" width="85" height="90" loading="lazy">
+                  <span class="service-card__name">Установка дверей</span>
                 </a>
               </li>
               <li>
                 <a href="#" class="service-card">
-                  <img class="service-card__icon" src="/img/home/service-video.svg" alt="" width="90" height="90" loading="lazy">
-                  <span class="service-card__name">Видео&shy;консультация с&nbsp;продавцом</span>
+                  <img class="service-card__icon" src="/img/home/service-warranty.svg" alt="" width="90" height="90" loading="lazy">
+                  <span class="service-card__name">Гарантия</span>
                 </a>
               </li>
             </ul>
@@ -415,50 +383,157 @@
             <script type="application/json" id="shops-data">[{"id":"belorusskie","name":"Фирменный магазин Белорусские двери","address":"г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ \"Квадратный Метр\", 2 этаж, пав. 3","hours":"c 10:00 до 20:00","coords":[37.697432499999984,55.72079806900604],"icon":"/templates/rf-dveri.ru/images/GeoGreenIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"ulyanovskie","name":"Фирменный магазин Ульяновские Двери","address":"г. Москва, ул. Волгоградский проспект, д. 32, корп. 25, ТЦ \"Квадратный Метр\", 2 этаж, пав. 4, 5","hours":"c 10:00 до 20:00","coords":[37.697432499999984,55.72079806900604],"icon":"/templates/rf-dveri.ru/images/GeoRedIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"oniks","name":"Фирменный магазин фабрики Оникс","address":"г. Раменское, Донинское шоссе, д. 20, ТВЦ \"Радуга\", Гипермаркет товаров для ремонта \"Уютный Дом\", пав. Б-3","hours":"c 09:00 до 19:00","coords":[38.25347149999988,55.58945206914478],"icon":"/templates/rf-dveri.ru/images/GeoRedIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"},{"id":"sklad","name":"Склад дверей","address":"г. Лыткарино, ул. Тураевское шоссе д. 13А","hours":"c 10:00 до 18:00","coords":[37.955689,55.559043],"icon":"/templates/rf-dveri.ru/images/GeoGreenIconForMap.svg","phones":["+7 (495) 532-49-41","+7 (495) 532-19-39"],"email":"rf-dveri@yandex.ru"}]</script>
           </div>
         </section>
-        <section class="news">
-          <div class="news__container">
-            <div class="news__head section-head">
-              <h2 class="section-title">Новости</h2>
-              <a href="#" class="news__all section-head__link link-more">Смотреть все</a>
+        <section class="reviews">
+          <div class="reviews__container">
+            <div class="section-head section-head--row">
+              <h2 class="section-title">Отзывы покупателей</h2>
+              <a href="#" class="section-head__link link-more link-more--arrow">Все отзывы</a>
             </div>
-            <ul class="news__list">
-              <li>
-                <article class="news-card">
-                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новинки сезона: входные двери с терморазрывом</a></h3>
-                  <div class="news-card__body">
-                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
-                    <div class="news-card__info">
-                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
-                      <p class="news-card__text">Новинки сезона: входные двери с терморазрывом</p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article class="news-card">
-                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
-                  <div class="news-card__body">
-                    <img class="news-card__image" src="/img/home/news-02.png" alt="" width="160" height="217" loading="lazy">
-                    <div class="news-card__info">
-                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
-                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article class="news-card">
-                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
-                  <div class="news-card__body">
-                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
-                    <div class="news-card__info">
-                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
-                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            </ul>
+            <div class="reviews__slider splide" aria-label="Отзывы покупателей">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">Е</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Ева О.</p>
+                          <p class="review-card__date">Январь 2024</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Довольна всем от и до! Менеджер проконсультировал по ассортименту, помог определиться с выбором. Качеством дверей также довольна. Привезли, установили в срок.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">О</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Ольга К.</p>
+                          <p class="review-card__date">Январь 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Обращались за заменой старых дверей на новые межкомнатные. Понравился подход, сначала замеры, потом чёткая консультация без навязывания. Доставка быстрая, без задержек. Монтаж прошёл спокойно.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">К</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Кристина И.</p>
+                          <p class="review-card__date">Март 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Очень порадовала доставка. Водитель Кирилл позвонил заранее, предупредил, через сколько будет. Помог всё аккуратно выгрузить, вежливый парень. Сами двери (брал с пвх плёнкой для дачи) тоже не подвели.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">Д</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Джамал В.</p>
+                          <p class="review-card__date">Февраль 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Искал конкретную модель под лофт, объездил кучу магазинов. Здесь нашёл то, что нужно — VFD Urban 2 Antic Loft Silver Mould. Смотрятся просто пушка, качество материалов на высоте, тяжёлые, добротные.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">С</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Сергей П.</p>
+                          <p class="review-card__date">Апрель 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Заказывали входную дверь в квартиру. Помогли подобрать модель с терморазрывом, замерщик приехал на следующий день. Установили аккуратно, мусор забрали.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">А</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Анна Л.</p>
+                          <p class="review-card__date">Май 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Брали пять межкомнатных дверей с эмалью. Цвет совпал с образцом, фурнитуру подобрали в тон. Спасибо за терпение — я долго выбирала.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">И</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Игорь Н.</p>
+                          <p class="review-card__date">Июнь 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Хороший выбор скрытых дверей, в салоне можно всё посмотреть вживую. Цена оказалась ниже, чем у конкурентов, при той же фабрике.</p>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="review-card">
+                      <div class="review-card__head">
+                        <span class="review-card__avatar" aria-hidden="true">М</span>
+                        <div class="review-card__author">
+                          <p class="review-card__name">Марина Д.</p>
+                          <p class="review-card__date">Июль 2025</p>
+                        </div>
+                        <span class="review-card__stars" role="img" aria-label="Оценка 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+                      </div>
+                      <p class="review-card__text">Оформили заказ по телефону, менеджер всё подробно рассказал про сроки и оплату. Двери пришли без повреждений, упаковка надёжная.</p>
+                    </article>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="faq">
+          <div class="faq__container">
+            <div class="section-head section-head--row">
+              <h2 class="section-title">Вопросы и ответы</h2>
+              <a href="#" class="section-head__link link-more link-more--arrow">Все вопросы</a>
+            </div>
+            <!-- Аккордеон на шаблонном модуле спойлеров; data-open — раскрыт при загрузке -->
+            <div class="faq__list" data-spollers data-spollers-speed="300">
+              <details class="faq-item" data-open>
+                <summary class="faq-item__question">Нужны ли доборы и наличники?</summary>
+                <div class="faq-item__answer">
+                  <p>Доборы нужны, когда стена толще дверной коробки. Их размер определяют на замере. Наличники подбирают с учётом конструкции коробки, покрытия и цвета двери, чтобы оформить стык со стеной.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-item__question">Как понять, какая нужна фурнитура?</summary>
+                <div class="faq-item__answer">
+                  <p>Фурнитуру подбирают под выбранную модель и назначение помещения. Для санузла обычно нужна защёлка с фиксатором, а тип петель зависит от конструкции и веса полотна. Менеджер поможет проверить совместимость ручек, замка и петель.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-item__question">Что выбрать — экошпон или эмаль?</summary>
+                <div class="faq-item__answer">
+                  <p>Выбор зависит от модели двери, условий эксплуатации и оформления интерьера. Сравните внешний вид покрытия, рекомендации производителя по уходу и стоимость комплекта. Экошпон или эмаль сами по себе не определяют качество всей двери.</p>
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-item__question">Можно ли обменять или вернуть дверь?</summary>
+                <div class="faq-item__answer">
+                  <p>Условия обмена и возврата описаны в разделе «Гарантия и возврат». Перед покупкой уточните у менеджера условия для выбранной модели и комплектации.</p>
+                </div>
+              </details>
+            </div>
           </div>
         </section>
         <section class="makers">
@@ -556,6 +631,52 @@
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+        <section class="news">
+          <div class="news__container">
+            <div class="news__head section-head">
+              <h2 class="section-title">Новости</h2>
+              <a href="#" class="news__all section-head__link link-more">Смотреть все</a>
+            </div>
+            <ul class="news__list">
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новинки сезона: входные двери с терморазрывом</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Новинки сезона: входные двери с терморазрывом</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-02.png" alt="" width="160" height="217" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+              <li>
+                <article class="news-card">
+                  <h3 class="news-card__title"><a href="#" class="news-card__link">Новая модель скрытой двери Invisible</a></h3>
+                  <div class="news-card__body">
+                    <img class="news-card__image" src="/img/home/news-01.png" alt="" width="160" height="125" loading="lazy">
+                    <div class="news-card__info">
+                      <time class="news-card__date" datetime="2026-01-08">08.01.2026</time>
+                      <p class="news-card__text">Уважаемые клиенты, открыт прием заказов на скрытые полотна серии Invisible с черной AL кромкой c 4-х сторон – модель INVISIBLE ALU black.</p>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            </ul>
           </div>
         </section>
 			</main>

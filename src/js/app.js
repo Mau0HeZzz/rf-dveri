@@ -49,7 +49,7 @@ mhzFunctions.dragCloseActions();
 Документация: https://start-template.ru/modul-spojlery-chertogi-frilansera-v3-0-0/
 Сниппет (HTML): spollers
 */
-// mhzFunctions.spollers();
+mhzFunctions.spollers();
 
 /*
 Модуль "Табы"
@@ -258,6 +258,8 @@ import "./libs/dynamic_adapt.js";
 import "./files/script.js";
 /* Шапка: меню каталога, мобильное меню */
 import "./files/header.js";
+/* Подсказки поиска в шапке */
+import "./files/search-hints.js";
 /* Карточки товаров: смена фото наведением, «В избранное» */
 import "./files/product-card.js";
 /* Карта магазинов (Яндекс Карты API v3) */

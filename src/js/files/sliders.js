@@ -46,83 +46,54 @@ const PRODUCT_PAGINATION_CLASSES = {
 };
 
 /**
- * Запускает слайдер «Хиты продаж»: 6 карточек на десктопе, по 3 на 520–768 и по 2 на телефонах
+ * Запускает слайдеры рядов карточек («Хиты продаж», «Распродажа»): на телефонах по 2 карточки,
+ * с 520 — по 3; с 768 слайдер уничтожается и ряд становится сеткой по 6 (см. .product-rows)
  */
-function initHitsSlider() {
-  const slider = document.querySelector('.hits__slider');
-  if (!slider) return;
-
-  new Splide(slider, {
-    type: 'slide',
-    perPage: 6,
-    gap: '1.25rem',
-    padding: '0.75rem',
-    arrows: false,
-    pagination: true,
-    classes: PRODUCT_PAGINATION_CLASSES,
-    i18n: SPLIDE_I18N_RU,
-    breakpoints: {
-      1439.98: { perPage: 5 },
-      1199.98: { perPage: 4 },
-      991.98: { perPage: 3 },
-      767.98: { perPage: 3, gap: '0.75rem', padding: 0 },
-      519.98: { perPage: 2 },
-    },
-  }).mount();
+function initProductRows() {
+  document.querySelectorAll('.product-rows__row').forEach((row) => {
+    new Splide(row, {
+      mediaQuery: 'min',
+      type: 'slide',
+      perPage: 2,
+      gap: '0.75rem',
+      arrows: false,
+      pagination: true,
+      classes: PRODUCT_PAGINATION_CLASSES,
+      i18n: SPLIDE_I18N_RU,
+      breakpoints: {
+        520: { perPage: 3 },
+        768: { destroy: true },
+      },
+    }).mount();
+  });
 }
 
 /**
- * Запускает слайдер «Новинки»: 8 карточек на десктопе, по 3 на 520–768 и по 2 на телефонах
- */
-function initNoveltiesSlider() {
-  const slider = document.querySelector('.novelties__slider');
-  if (!slider) return;
-
-  new Splide(slider, {
-    type: 'slide',
-    perPage: 8,
-    gap: '1.25rem',
-    padding: '0.75rem',
-    arrows: false,
-    pagination: true,
-    classes: PRODUCT_PAGINATION_CLASSES,
-    i18n: SPLIDE_I18N_RU,
-    breakpoints: {
-      1599.98: { perPage: 7 },
-      1439.98: { perPage: 6 },
-      1199.98: { perPage: 5 },
-      991.98: { perPage: 4 },
-      767.98: { perPage: 3, gap: '0.75rem', padding: 0 },
-      519.98: { perPage: 2 },
-    },
-  }).mount();
-}
-
-/**
- * Запускает слайдер «Скидки и акции»: 3 карточки на десктопе, 2 на планшете, 1 на телефонах
+ * Запускает слайдер «Скидки и акции» на телефонах: 1 карточка, с 520 — 2; с 768 слайдер уничтожается
+ * и карточки встают сеткой по 4 (см. .promos__slider)
  */
 function initPromosSlider() {
   const slider = document.querySelector('.promos__slider');
   if (!slider) return;
 
   new Splide(slider, {
+    mediaQuery: 'min',
     type: 'slide',
-    perPage: 3,
-    gap: '1.25rem',
+    perPage: 1,
+    gap: '0.75rem',
     arrows: false,
     pagination: true,
     classes: PRODUCT_PAGINATION_CLASSES,
     i18n: SPLIDE_I18N_RU,
     breakpoints: {
-      991.98: { perPage: 2 },
-      767.98: { perPage: 2, gap: '0.75rem' },
-      519.98: { perPage: 1 },
+      520: { perPage: 2 },
+      768: { destroy: true },
     },
   }).mount();
 }
 
 /**
- * Запускает слайдер «Наш TV»: 4 видео на десктопе, дальше 3, 2 и 1
+ * Запускает слайдер «Наш TV»: 4 видео вплоть до 768, на телефонах 2, ниже 520 — 1
  */
 function initTvSlider() {
   const slider = document.querySelector('.tv__slider');
@@ -138,8 +109,6 @@ function initTvSlider() {
     classes: PRODUCT_PAGINATION_CLASSES,
     i18n: SPLIDE_I18N_RU,
     breakpoints: {
-      1199.98: { perPage: 3 },
-      991.98: { perPage: 2 },
       767.98: { perPage: 2, gap: '0.75rem' },
       519.98: { perPage: 1 },
     },
@@ -147,7 +116,8 @@ function initTvSlider() {
 }
 
 /**
- * Запускает слайдер «Производители дверей»: слайд — колонка из 3 карточек, 6 колонок на десктопе
+ * Запускает слайдер «Производители дверей»: слайд — колонка из 3 карточек, 6 колонок вплоть до 768,
+ * на телефонах 3, ниже 520 — 2
  */
 function initMakersSlider() {
   const slider = document.querySelector('.makers__slider');
@@ -163,11 +133,30 @@ function initMakersSlider() {
     classes: PRODUCT_PAGINATION_CLASSES,
     i18n: SPLIDE_I18N_RU,
     breakpoints: {
-      1439.98: { perPage: 5 },
-      1199.98: { perPage: 4 },
-      991.98: { perPage: 3 },
       767.98: { perPage: 3, gap: '0.75rem' },
       519.98: { perPage: 2 },
+    },
+  }).mount();
+}
+
+/**
+ * Запускает слайдер «Отзывы покупателей»: 4 карточки вплоть до 768, на телефонах 2, ниже 520 — 1
+ */
+function initReviewsSlider() {
+  const slider = document.querySelector('.reviews__slider');
+  if (!slider) return;
+
+  new Splide(slider, {
+    type: 'slide',
+    perPage: 4,
+    gap: '1.25rem',
+    arrows: false,
+    pagination: true,
+    classes: PRODUCT_PAGINATION_CLASSES,
+    i18n: SPLIDE_I18N_RU,
+    breakpoints: {
+      767.98: { perPage: 2, gap: '0.75rem' },
+      519.98: { perPage: 1 },
     },
   }).mount();
 }
@@ -177,10 +166,10 @@ function initMakersSlider() {
  */
 function initSliders() {
   initHeroSlider();
-  initHitsSlider();
-  initNoveltiesSlider();
+  initProductRows();
   initPromosSlider();
   initTvSlider();
+  initReviewsSlider();
   initMakersSlider();
 }
 

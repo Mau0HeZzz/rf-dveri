@@ -79,6 +79,33 @@ $bpMobile: toEm(variables.$mobile);
     object-fit: cover;
   }
 
+  // Подпись поверх фото: заголовок и текст с тенью для читаемости на любом фоне
+  &__caption {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    max-width: toRem(560);
+    color: var(--text-light-color);
+    text-shadow: 0 toRem(1) toRem(4) rgba(0, 0, 0, 0.8);
+    @include av("left", 32, 12);
+    @include av("right", 32, 12);
+    @include av("bottom", 24, 24);
+  }
+
+  &__caption-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    @include av("font-size", 24, 16);
+    @include av("line-height", 30, 20);
+  }
+
+  &__caption-text {
+    @include av("font-size", 16, 12);
+    @include av("line-height", 22, 16);
+  }
+
   &__content {
     position: relative;
     z-index: 2;
@@ -218,154 +245,63 @@ $bpMobile: toEm(variables.$mobile);
 }
 
 //====================================================================================================
-// Хиты продаж: слайдер карточек на серой подложке (на мобильном без подложки)
+// Хиты продаж и Распродажа: два ряда карточек (компонент .product-rows в common.scss)
 //====================================================================================================
-.hits {
+.hits,
+.sale {
   @include av("padding-bottom", 40, 24);
-
-  &__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: toRem(12);
-    @include av("margin-bottom", 40, 12);
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    border-radius: toRem(10);
-    background-color: var(--bg-section-color);
-    gap: toRem(14);
-    padding: toRem(24) toRem(24) toRem(36);
-
-    @media (max-width: $bpMobile) {
-      gap: 0;
-      padding: 0;
-      background-color: transparent;
-    }
-  }
-
-  &__top {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: toRem(34);
-
-    @media (max-width: $bpMobile) {
-      display: none;
-    }
-  }
-
-  &__slider {
-    position: relative;
-
-    .splide__track {
-      padding-top: toRem(12);
-      padding-bottom: toRem(12);
-
-      @media (max-width: $bpMobile) {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-    }
-
-    .slider-pagination {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: toRem(-18);
-
-      @media (max-width: $bpMobile) {
-        position: static;
-        margin-top: toRem(12);
-      }
-    }
-  }
 }
 
 //====================================================================================================
-// Популярные: сетка категорий (колонки подстраиваются под ширину, на мобильном 2)
+// Популярные: сетка категорий — 6 в ряд вплоть до 768, ниже 3, на телефонах 2
 //====================================================================================================
 .popular {
   @include av("padding-bottom", 40, 24);
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
-    column-gap: toRem(20);
-    row-gap: toRem(30);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    @include av("gap", 20, 12);
 
     @media (max-width: $bpMobile) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: toEm(519.98)) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: toRem(12);
     }
   }
 }
 
 //====================================================================================================
-// Новинки: слайдер карточек с кнопками покупки
-//====================================================================================================
-.novelties {
-  @include av("padding-bottom", 40, 24);
-
-  &__slider {
-    position: relative;
-    // Место под тени карточек: трек шире контейнера на padding Splide
-    margin: toRem(-12);
-
-    .splide__track {
-      padding-top: toRem(12);
-      padding-bottom: toRem(12);
-    }
-
-    .slider-pagination {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: toRem(-14);
-    }
-
-    @media (max-width: $bpMobile) {
-      margin: 0;
-
-      .splide__track {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-
-      .slider-pagination {
-        position: static;
-        margin-top: toRem(12);
-      }
-    }
-  }
-}
-
-//====================================================================================================
-// Скидки и акции: слайдер, 3 карточки на десктопе, дальше 2 и 1
+// Скидки и акции: 4 карточки в ряд вплоть до 768, на телефонах слайдер (2, ниже 520 — 1)
 //====================================================================================================
 .promos {
   @include av("padding-bottom", 40, 24);
 
+  // Базовый .splide прячет слайдер до инициализации, а на десктопе Splide не монтируется
+  &__slider.splide {
+    visibility: visible;
+  }
+
   &__slider {
-    position: relative;
+    // Перебиваем .splide.is-initialized:not(.is-active) .splide__list { display: block } у уничтоженного Splide
+    @media (min-width: toEm(variables.$mobile + 0.02)) {
+      .promos &.splide:not(.is-active) .splide__list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        @include av("gap", 20, 12);
+      }
+    }
 
     .slider-pagination {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: toRem(-24);
-
-      @media (max-width: $bpMobile) {
-        position: static;
-        margin-top: toRem(12);
-      }
+      margin-top: toRem(12);
     }
   }
 }
 
 // Ширина карточки акции в макете: от неё считаются все размеры внутри
-$promoWidth: 492;
+$promoWidth: 347.5;
 
 /**
  * Возвращает размер из макета карточки акции в долях её ширины (cqw), чтобы композиция масштабировалась целиком
@@ -381,7 +317,7 @@ $promoWidth: 492;
   position: relative;
   display: block;
   overflow: hidden;
-  aspect-ratio: 492 / 300;
+  aspect-ratio: 347.5 / 285;
   container-type: inline-size;
   background-color: var(--bg-image-color);
   @include av("border-radius", 10, 5.93);
@@ -415,6 +351,7 @@ $promoWidth: 492;
 
     > * {
       position: absolute;
+      white-space: nowrap;
     }
   }
 
@@ -466,8 +403,8 @@ $promoWidth: 492;
     position: absolute;
     z-index: 1;
     top: pc(20);
-    left: pc(312);
-    width: pc(115);
+    left: pc(212.6);
+    width: pc(110.9);
     max-width: none;
     height: auto;
     transform-origin: bottom center;
@@ -482,9 +419,9 @@ $promoWidth: 492;
 
   &__text {
     position: absolute;
-    top: pc(223);
+    top: pc(208);
     left: pc(24);
-    right: pc(180);
+    right: pc(133.5);
     display: flex;
     flex-direction: column;
     line-height: normal;
@@ -511,14 +448,11 @@ $promoWidth: 492;
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: toRem(20);
+    @include av("gap", 20, 12);
 
-    @media (max-width: toEm(variables.$tablet)) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
+    // 4 в ряд вплоть до 768, на телефонах по 2
     @media (max-width: $bpMobile) {
-      gap: toRem(12);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 }
@@ -529,14 +463,17 @@ $promoWidth: 492;
 .service-card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   height: 100%;
   background-color: var(--bg-image-color);
   @include av("border-radius", 10, 8);
-  @include av("padding-top", 58, 12);
-  @include av("padding-bottom", 45, 12);
-  @include av("padding-left", 28, 12);
-  @include av("padding-right", 28, 12);
+  // Карточка 250 по высоте, иконка и название по центру
+  @include av("min-height", 250, 120);
+  @include av("padding-top", 20, 12);
+  @include av("padding-bottom", 20, 12);
+  @include av("padding-left", 20, 12);
+  @include av("padding-right", 20, 12);
   @include av("gap", 32, 12);
 
   @media (max-width: $bpMobile) {
@@ -1106,6 +1043,169 @@ $tvWidth: 364;
   }
 
   &__name {
+    @include av("font-size", 16, 14);
+    @include av("line-height", 24, 20);
+  }
+}
+
+//====================================================================================================
+// Отзывы покупателей: слайдер, 4 карточки вплоть до 768, на телефонах 2 (ниже 520 — 1)
+//====================================================================================================
+.reviews {
+  @include av("padding-bottom", 40, 24);
+
+  &__slider {
+    // Место под рамку крайних карточек, чтобы трек её не обрезал
+    .splide__track {
+      padding: toRem(1);
+    }
+
+    .slider-pagination {
+      margin-top: toRem(12);
+    }
+  }
+}
+
+// Карточка отзыва: аватар с инициалом, имя и дата, звёзды, текст
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(12);
+  height: 100%;
+  border: toRem(1) solid var(--line-soft-color);
+  border-radius: toRem(8);
+  background-color: var(--surface-color);
+  @include av("min-height", 250, 200);
+  @include av("padding-top", 16, 12);
+  @include av("padding-bottom", 16, 12);
+  @include av("padding-left", 20, 12);
+  @include av("padding-right", 20, 12);
+
+  &__head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: toRem(4) toRem(12);
+  }
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: toRem(40);
+    height: toRem(40);
+    border-radius: 50%;
+    background-color: var(--brand-color);
+    color: var(--text-light-color);
+    font-size: toRem(16);
+    font-weight: 600;
+    line-height: toRem(22);
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(4);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__name {
+    color: var(--text-color);
+    font-size: toRem(16);
+    font-weight: 600;
+    line-height: toRem(22);
+  }
+
+  &__date {
+    color: var(--text-muted-color);
+    font-size: toRem(14);
+    line-height: toRem(20);
+  }
+
+  &__stars {
+    display: flex;
+    gap: toRem(4);
+
+    i {
+      width: toRem(16);
+      height: toRem(16);
+      background: url("../img/reviews/star.svg") center / contain no-repeat;
+    }
+  }
+
+  &__text {
+    color: var(--text-color);
+    @include av("font-size", 16, 14);
+    @include av("line-height", 22, 20);
+  }
+}
+
+//====================================================================================================
+// Вопросы и ответы: аккордеон (шаблонный модуль спойлеров, data-spollers)
+//====================================================================================================
+.faq {
+  @include av("padding-bottom", 40, 24);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include av("gap", 16, 12);
+  }
+}
+
+.faq-item {
+  border-radius: toRem(10);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-card);
+
+  // Вопрос с иконкой справа: крестик у открытого, плюс (тот же крестик под 45°) у свёрнутого
+  &__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toRem(20);
+    color: var(--text-color);
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+    @include av("padding", 24, 16);
+    @include av("font-size", 18, 16);
+    @include av("line-height", 26, 22);
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      flex-shrink: 0;
+      width: toRem(24);
+      height: toRem(24);
+      background: url("../img/faq/toggle.svg") center / contain no-repeat;
+      rotate: 45deg;
+      transition: rotate 0.3s;
+    }
+
+    &._spoller-active::after {
+      rotate: 0deg;
+    }
+
+    &:focus-visible {
+      outline: toRem(2) solid var(--brand-color);
+      outline-offset: toRem(-2);
+      border-radius: toRem(10);
+    }
+  }
+
+  &__answer {
+    max-width: toRem(1224);
+    margin-top: toRem(-8);
+    color: var(--text-secondary-color);
+    @include av("padding-left", 24, 16);
+    @include av("padding-right", 24, 16);
+    @include av("padding-bottom", 24, 16);
     @include av("font-size", 16, 14);
     @include av("line-height", 24, 20);
   }
