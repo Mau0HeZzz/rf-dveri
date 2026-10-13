@@ -11,12 +11,16 @@ body::after {
 	top: 0;
 	left: 0;
 	opacity: 0;
-	transition: opacity 0.8s ease 0s;
+	// Без visibility iOS Safari подкрашивает статус-бар и нижнюю панель по невидимому фиксированному слою,
+	// и сквозь них просвечивает контент
+	visibility: hidden;
+	transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
 	pointer-events: none;
 	z-index: 149;
 }
 .popup-show body::after {
 	opacity: 1;
+	visibility: visible;
 }
 .popup {
 	position: fixed;
