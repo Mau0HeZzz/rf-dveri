@@ -29,14 +29,22 @@
 @use 'lightgallery';
 @use 'lg-video';
 
-// Iframe-видео (Rutube): пропорции 16:9 вместо растягивания на весь экран, без прокрутки внутри
+// Iframe-видео (Rutube): 16:9 по центру слайда вместо растягивания на весь экран.
+// Центрирование ядра (inline-block + .lg-item::before высотой 100%) в части браузеров уводит iframe вниз,
+// поэтому у таких слайдов псевдоэлемент убираем, а контейнер ставим по центру абсолютно
+.lg-outer .lg-item:has(> .lg-has-iframe)::before {
+  display: none;
+}
+
 .lg-outer .lg-media-cont.lg-has-iframe {
-  // Плагин видео ставит контейнеру display: block — возвращаем центрирование слайда (inline-block по середине)
-  display: inline-block;
-  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: #000;
+  translate: -50% -50%;
 
   .lg-object {
     display: block;
