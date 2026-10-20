@@ -28,3 +28,19 @@
 
 @use 'lightgallery';
 @use 'lg-video';
+
+// Iframe-видео (Rutube): пропорции 16:9 вместо растягивания на весь экран, без прокрутки внутри
+.lg-outer .lg-media-cont.lg-has-iframe {
+  // Плагин видео ставит контейнеру display: block — возвращаем центрирование слайда (inline-block по середине)
+  display: inline-block;
+  vertical-align: middle;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #000;
+
+  .lg-object {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
