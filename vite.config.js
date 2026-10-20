@@ -37,6 +37,25 @@ function htmlPartialsHmr() {
   }
 }
 
+/**
+ * Делает пути к шрифтам в собранном CSS относительными: url(/fonts/...) → url(../fonts/...).
+ * fonts.scss генерирует vite-plugin-fonts-auto с зашитым абсолютным путём, поэтому правим результат сборки
+ * (CSS лежит в dist/assets, шрифты — в dist/fonts)
+ * @returns {import('vite').Plugin}
+ */
+function relativeFontUrls() {
+  return {
+    name: 'relative-font-urls',
+    apply: 'build',
+    generateBundle(_, bundle) {
+      for (const file of Object.values(bundle)) {
+        if (file.type !== 'asset' || !file.fileName.endsWith('.css')) continue
+        file.source = String(file.source).replace(/url\((["']?)\/fonts\//g, 'url($1../fonts/')
+      }
+    },
+  }
+}
+
 export default defineConfig({
   build: {
     target: 'es2017',
@@ -82,6 +101,7 @@ export default defineConfig({
   },
   plugins: [
     htmlPartialsHmr(),
+    relativeFontUrls(),
     ViteFontsAuto({
       sourceDir: 'public/fonts',
       destDir: 'public/fonts',
