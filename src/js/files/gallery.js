@@ -40,8 +40,8 @@ import '../../scss/libs/gallery/lightgallery-white.scss';
 // Все стили
 // import '@scss/libs/gallery/lightgallery-bundle.scss';
 
-// Ссылка Rutube: «поделиться» (rutube.ru/video/ID/) или embed (rutube.ru/play/embed/ID/), ID — в группе 1
-const RUTUBE_LINK = /^https?:\/\/(?:www\.)?rutube\.ru\/(?:video|play\/embed)\/([\w-]+)\/?(\?.*)?$/i;
+// Ссылка Rutube: video/ID/, shorts/ID/ или play/embed/ID/, ID — в группе 1
+const RUTUBE_LINK = /^https?:\/\/(?:www\.)?rutube\.ru\/(?:video|shorts|play\/embed)\/([\w-]+)\/?(\?.*)?$/i;
 
 /**
  * Переводит ссылки Rutube в элементах галереи в embed-адрес и включает для них режим iframe:

@@ -15,6 +15,34 @@ img {
   display: none !important;
 }
 
+._content {
+  color: var(--text-color);
+  font-size: mixins.toRem(16);
+  line-height: 1.625;
+  overflow-wrap: break-word;
+
+  p {
+    margin-bottom: mixins.toRem(16);
+  }
+
+  h3 {
+    margin-top: mixins.toRem(24);
+    margin-bottom: mixins.toRem(16);
+    font-size: mixins.toRem(20);
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
 ._md1dn {
   @media (max-width:mixins.toEm(variables.$pc)){
     display: none !important;
