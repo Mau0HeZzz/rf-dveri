@@ -72,7 +72,7 @@ $navHeight: 65;
 }
 
 // Место под панель внизу страницы, чтобы она не перекрывала подвал
-body {
+.wrapper {
   @media (max-width: $bpMobile) {
     padding-bottom: calc(toRem($navHeight) + env(safe-area-inset-bottom));
   }

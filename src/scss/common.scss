@@ -656,173 +656,145 @@ $bpMobile: mixins.toEm(variables.$mobile);
 // Брейкпоинт начала десктопной компоновки
 $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
 
-//====================================================================================================
-// Карточка «стиль Новинки» на десктопе: всё по центру, скидка и флажки поверх фото
-// (мобильная версия общая с базовой карточкой). Размеры плавные: в ряду 6 карточек вплоть до 768
-//====================================================================================================
-@media (min-width: $bpDesktop) {
-  .product-card--new {
-    border-radius: 0;
-    @include mixins.av("padding", 20, 8);
-    @include mixins.av("gap", 13, 8);
+// Карточки главной: фото с чипом, название, цены, наличие и кнопка.
+.product-card--new {
+  gap: mixins.toRem(8);
+  padding: mixins.toRem(12);
+  border-radius: mixins.toRem(8);
 
-    .product-card__gallery {
-      @include mixins.av("height", 192, 120);
-    }
+  .product-card__media {
+    position: relative;
+    gap: 0;
+  }
 
-    .product-card__image {
-      @include mixins.av("height", 192, 120);
-    }
+  .product-card__gallery {
+    height: clamp(#{mixins.toRem(150)}, 13.25vw, #{mixins.toRem(192)});
+  }
 
-    // Колонка текста и кнопок уже карточки: 107 из 185 в макете
-    .product-card__info {
-      gap: mixins.toRem(10);
-      align-items: stretch;
-      text-align: center;
-      @include mixins.av("padding-left", 39, 0);
-      @include mixins.av("padding-right", 39, 0);
-    }
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-    .product-card__name {
-      order: 1;
-      -webkit-line-clamp: 3;
-      line-clamp: 3;
-      @include mixins.av("font-size", 13, 11);
-    }
+  .product-card__chip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: mixins.toRem(2) mixins.toRem(6);
+    border-radius: mixins.toRem(4);
+    background-color: var(--offer-color);
+    color: var(--text-light-color);
+    font-size: mixins.toRem(14);
+    font-weight: 600;
+    line-height: mixins.toRem(20);
 
-    .product-card__prices {
-      order: 2;
-      grid-template-areas:
-        "old"
-        "price";
-      grid-template-columns: auto;
-      justify-items: center;
-      row-gap: mixins.toRem(4);
-    }
-
-    .product-card__price {
-      margin-left: 0;
-      font-weight: 600;
-      @include mixins.av("font-size", 16, 13);
-    }
-
-    .product-card__old-price {
-      margin-left: 0;
-      color: var(--sale-price-color);
-      font-weight: 400;
-      text-decoration: line-through;
-      @include mixins.av("font-size", 16, 13);
-    }
-
-    .product-card__currency {
-      font-size: 1em;
-      font-weight: inherit;
-    }
-
-    // Круглый бейдж скидки в правом нижнем углу фото
-    .product-card__badge {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      border-radius: 50%;
-      background: var(--sale-badge-color);
-      font-weight: 700;
-      @include mixins.av("top", 135, 90);
-      @include mixins.av("right", 7, 4);
-      @include mixins.av("width", 45, 30);
-      @include mixins.av("height", 45, 30);
-      @include mixins.av("font-size", 15, 10);
-    }
-
-    // Колонка флажков-лент: выступают за правый край карточки на 17, под концом — загнутый уголок
-    .product-card__flags {
-      position: absolute;
-      align-items: flex-end;
-      gap: mixins.toRem(12);
-      @include mixins.av("top", 57, 36);
-      @include mixins.av("right", -17, -10);
-    }
-
-    .product-card__flag {
-      position: relative;
-      padding: mixins.toRem(4) mixins.toRem(8);
-      background-color: var(--flag-color, var(--flag-bg-color));
-      color: var(--text-light-color);
-      font-weight: 600;
-      white-space: nowrap;
-      @include mixins.av("font-size", 11, 9);
-      @include mixins.av("line-height", 15, 12);
-
-      // Уголок темнее флажка; свой цвет можно задать через --flag-fold
-      &::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: mixins.toRem(-7);
-        width: mixins.toRem(10);
-        height: mixins.toRem(7);
-        background-color: var(--flag-fold, color-mix(in srgb, var(--flag-color, var(--flag-bg-color)) 78%, #000));
-        clip-path: polygon(0 0, 100% 0, 0 100%);
-      }
-    }
-
-    .product-card__actions {
-      order: 3;
-      gap: mixins.toRem(6);
-    }
-
-    .product-card__cart {
-      height: auto;
-      padding: mixins.toRem(7) mixins.toRem(4) mixins.toRem(8);
-      border-radius: mixins.toRem(3);
-      font-weight: 400;
-      line-height: 1.05;
-      text-transform: uppercase;
-      @include mixins.av("font-size", 14, 11);
-    }
-
-    .product-card__one-click {
-      align-self: center;
-      font-size: mixins.toRem(14);
-      line-height: 1.05;
-    }
-
-    .product-card__fav {
-      top: mixins.toRem(20);
-      right: mixins.toRem(6.4);
-      width: mixins.toRem(15.6);
-      height: mixins.toRem(13);
-
-      svg {
-        width: mixins.toRem(15.6);
-        height: mixins.toRem(13);
-      }
+    &--hit {
+      background-color: var(--brand-tint-color);
+      color: var(--brand-dark-color);
     }
   }
 
-  // Широкая карточка (входные двери): фото, текст и кнопка на всю ширину, без скидки
-  .product-card--wide {
-    .product-card__image {
-      width: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
+  .product-card__info {
+    gap: mixins.toRem(8);
+    padding: 0;
+  }
 
-    .product-card__info {
-      padding: 0;
-    }
+  .product-card__name {
+    min-height: mixins.toRem(40);
+    font-size: mixins.toRem(14);
+    line-height: mixins.toRem(20);
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
 
-    .product-card__name {
-      line-height: 1.43;
-      @include mixins.av("font-size", 14, 11);
-    }
+  .product-card__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: mixins.toRem(4) mixins.toRem(6);
+    min-height: mixins.toRem(22);
+  }
 
-    .product-card__prices {
-      // Отступы сверху и снизу цены по макету: название, цена и кнопка разнесены по высоте
-      @include mixins.av("margin-top", 3, 0);
+  .product-card__price {
+    margin: 0;
+    color: var(--text-color);
+    font-size: mixins.toRem(16);
+    font-weight: 700;
+    line-height: mixins.toRem(22);
+  }
+
+  .product-card__old-price {
+    margin: 0;
+    color: var(--text-secondary-color);
+    font-size: mixins.toRem(12);
+    font-weight: 400;
+    line-height: mixins.toRem(16);
+    text-decoration: line-through;
+  }
+
+  .product-card__stock {
+    display: flex;
+    align-items: center;
+    gap: mixins.toRem(6);
+    color: var(--brand-dark-color);
+    font-size: mixins.toRem(12);
+    line-height: mixins.toRem(16);
+
+    &::before {
+      content: "";
+      flex-shrink: 0;
+      width: mixins.toRem(6);
+      height: mixins.toRem(6);
+      border-radius: 50%;
+      background: url("../img/home/stock-dot.svg") center / contain no-repeat;
     }
+  }
+
+  .product-card__cart {
+    min-height: mixins.toRem(36);
+    height: auto;
+    padding: mixins.toRem(8) mixins.toRem(4);
+    border-radius: mixins.toRem(8);
+    background-color: var(--brand-dark-color);
+    font-weight: 600;
+
+    @media (any-hover: hover) {
+      &:hover { background-color: var(--brand-hover-color); }
+    }
+  }
+
+  .product-card__fav {
+    top: mixins.toRem(12);
+    right: mixins.toRem(12);
+    width: mixins.toRem(20);
+    height: mixins.toRem(20);
+    border-radius: 0;
+    background-color: transparent;
+
+    &::before { display: block; inset: mixins.toRem(-12); }
+
+    &::after {
+      content: "";
+      width: mixins.toRem(20);
+      height: mixins.toRem(20);
+      background-color: currentColor;
+      mask: url("../img/home/card-favorite.svg") center / contain no-repeat;
+    }
+  }
+}
+
+.product-card--wide .product-card__gallery {
+  overflow: hidden;
+
+  // Исходное фото содержит подпись снизу: в Figma видны только верхние 74%.
+  .product-card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 135.14%;
+    object-fit: fill;
   }
 }
 
@@ -843,7 +815,7 @@ $bpDesktop: mixins.toEm(variables.$mobile + 0.02);
     // У уничтоженного Splide своё правило .splide.is-initialized:not(.is-active) .splide__list { display: block } —
     // перебиваем его специфичностью
     @media (min-width: $bpDesktop) {
-      // Ленты флажков выступают за правый край крайней карточки — трек их не обрезает
+      // Оставляем место для теней крайних карточек
       .splide__track {
         overflow: visible;
       }

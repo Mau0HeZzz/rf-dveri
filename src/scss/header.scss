@@ -315,7 +315,7 @@ $collapse: 0.3s;
     height: toRem(40);
     margin-left: toRem(53.5);
     border-radius: toRem(999);
-    background-color: var(--brand-color);
+    background-color: var(--brand-dark-color);
     color: var(--text-light-color);
     font-size: toRem(20);
     font-weight: 600;
@@ -541,6 +541,7 @@ $collapse: 0.3s;
     display: block;
     width: toRem(24);
     height: toRem(24);
+    object-fit: contain;
 
     @media (max-width: $bpHeader) {
       width: toRem(44);
@@ -586,7 +587,6 @@ $collapse: 0.3s;
     color: var(--text-color);
     font-size: toRem(14);
     line-height: toRem(19);
-    text-transform: uppercase;
     white-space: nowrap;
     transition: color 0.2s;
 
@@ -621,7 +621,7 @@ $collapse: 0.3s;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-bottom: toRem(60);
-  background-color: var(--bg-page-color);
+  background-color: var(--surface-color);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s, visibility 0.2s, max-height $collapse;
@@ -640,12 +640,11 @@ $collapse: 0.3s;
     display: none;
   }
 
-  // Зелёная линия под шапкой — шириной в контейнер
+  // Рабочая область меню, общая для всех разделов
   &__container {
     position: relative;
-    // 20 по макету минус линия
-    padding-top: toRem(19);
-    border-top: toRem(1) solid var(--brand-color);
+    padding-top: toRem(20);
+    min-height: toRem(540);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -653,24 +652,24 @@ $collapse: 0.3s;
   //--------------------------------------------------------------------------------------------------
   &__sidebar {
     width: toRem(270);
-    padding: toRem(12) toRem(20) toRem(25);
-    border-radius: toRem(6);
-    background-color: var(--surface-color);
-    box-shadow: var(--shadow-card);
+    padding: 0;
+  }
+
+  &__sections {
+    border-bottom: toRem(1) solid var(--brand-dark-color);
   }
 
   &__section-link {
     display: flex;
     align-items: center;
     gap: toRem(8);
-    // Нижний отступ на 1px меньше: в макете линия входит в высоту 44
-    padding: toRem(11) 0 toRem(10);
-    border-bottom: toRem(1) solid var(--line-color);
-    color: var(--text-color);
+    // Одинаковая высота строк с иконкой и текстом
+    padding: toRem(11) toRem(12);
+    border-radius: toRem(4);
+    color: var(--text-menu-color);
     font-size: toRem(14);
-    font-weight: 600;
+    font-weight: 400;
     line-height: toRem(22);
-    text-transform: uppercase;
     transition: background-color 0.2s;
 
     span {
@@ -686,17 +685,13 @@ $collapse: 0.3s;
       background: url("../img/catalog-menu/arrow-down.svg") center / toRem(12) toRem(6) no-repeat;
     }
 
-    .catalog-menu__section.is-active & {
-      background-color: var(--line-light-color);
+    .catalog-menu__section.is-active > & {
+      background-color: var(--bg-image-color);
 
       &::after {
         background-image: url("../img/catalog-menu/arrow-right.svg");
         background-size: toRem(6) toRem(12);
       }
-    }
-
-    .catalog-menu__section--group-end & {
-      border-bottom-color: var(--icon-color);
     }
   }
 
@@ -709,11 +704,11 @@ $collapse: 0.3s;
   // «Вызвать замерщика», «Заказать звонок»
   &__action {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: toRem(8);
     width: 100%;
-    padding: toRem(11) 0;
+    padding: toRem(11) toRem(12);
     color: var(--action-color);
     font-size: toRem(14);
     line-height: toRem(22);
@@ -733,7 +728,7 @@ $collapse: 0.3s;
   }
 
   //--------------------------------------------------------------------------------------------------
-  // Каскад подкатегорий: каждый уровень — карточка-колонка, вложенный список встаёт справа от родителя
+  // Каскад подкатегорий: каждый уровень — отдельная колонка, вложенный список встаёт справа от родителя
   //--------------------------------------------------------------------------------------------------
   // Справа от разделов (270 + 16) до слайдера баннеров; три колонки по 233 максимум
   &__panel {
@@ -757,12 +752,9 @@ $collapse: 0.3s;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: toRem(10);
+    gap: 0;
     width: calc((100% - toRem(32)) / 3);
-    padding: toRem(20);
-    border-radius: toRem(6);
-    background-color: var(--surface-color);
-    box-shadow: var(--shadow-card);
+    padding: 0;
 
     // Вложенный уровень
     & & {
@@ -777,7 +769,7 @@ $collapse: 0.3s;
       display: flex;
     }
 
-    // Группы (у «Производителей»): каждая — отдельная колонка с зелёным заголовком, без каскада
+    // Группы (у «Производителей»): отдельные колонки с заголовками, без каскада
     &--groups {
       flex-direction: row;
       align-items: flex-start;
@@ -791,16 +783,13 @@ $collapse: 0.3s;
       > .catalog-menu__item {
         display: flex;
         flex-direction: column;
-        gap: toRem(10);
+        gap: 0;
         width: calc((100% - toRem(32)) / 3);
-        padding: toRem(20);
-        border-radius: toRem(6);
-        background-color: var(--surface-color);
-        box-shadow: var(--shadow-card);
 
         > .catalog-menu__link {
-          color: var(--brand-color);
-          font-weight: 700;
+          background-color: transparent;
+          color: var(--text-secondary-color);
+          font-weight: 600;
         }
 
         > .catalog-menu__list {
@@ -813,8 +802,9 @@ $collapse: 0.3s;
         }
       }
 
-      // Внутри группы активный пункт не выделяем — выделен только заголовок
+      // Внутри группы активный пункт не выделяем
       .catalog-menu__list .catalog-menu__item.is-active > .catalog-menu__link {
+        background-color: transparent;
         color: var(--text-secondary-color);
         font-weight: 400;
       }
@@ -832,8 +822,11 @@ $collapse: 0.3s;
     justify-content: space-between;
     align-items: center;
     gap: toRem(10);
+    min-height: toRem(33);
+    padding: toRem(6) toRem(9);
+    border-radius: toRem(4);
     color: var(--text-secondary-color);
-    font-size: toRem(16);
+    font-size: toRem(14);
     line-height: toRem(22);
     transition: color 0.2s;
 
@@ -847,8 +840,8 @@ $collapse: 0.3s;
     }
 
     .catalog-menu__item.is-active > & {
-      color: var(--brand-color);
-      font-weight: 700;
+      background-color: var(--bg-image-color);
+      font-weight: 400;
     }
 
     @media (any-hover: hover) {
