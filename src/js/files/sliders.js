@@ -30,12 +30,13 @@ function initHeroSlider() {
     perPage: 1,
     gap: '1.25rem',
     speed: 600,
-    arrows: false,
+    arrows: true,
     pagination: true,
     autoplay: true,
     interval: 6000,
     pauseOnHover: true,
     i18n: SPLIDE_I18N_RU,
+    breakpoints: { 767.98: { arrows: false } },
   }).mount();
 }
 
@@ -116,7 +117,7 @@ function initTvSlider() {
 }
 
 /**
- * Запускает слайдер «Производители дверей»: слайд — колонка из 3 карточек, 6 колонок вплоть до 768,
+ * Запускает слайдер «Производители дверей»: слайд — колонка из 2 карточек, 6 колонок вплоть до 768,
  * на телефонах 3, ниже 520 — 2
  */
 function initMakersSlider() {
